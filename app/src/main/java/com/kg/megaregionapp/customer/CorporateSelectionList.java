@@ -15,13 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class CorporateSelectionList extends AppCompatActivity {
 
-    private static final String TAG = com.kg.bar.customer.CorporateSelectionList.class.getSimpleName();
+    private static final String TAG = CorporateSelectionList.class.getSimpleName();
     private ProgressDialog pDialog;
     private Button btnClose, btnSearch;
     private EditText companyName;
@@ -111,12 +111,12 @@ public class CorporateSelectionList extends AppCompatActivity {
 
     public void listCustomers() throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.customer.CorporateSelectionList.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.customer.CorporateSelectionList.this,
+        if (!NetworkUtil.isNetworkConnected(CorporateSelectionList.this)) {
+            MyDialog.createSimpleOkErrorDialog(CorporateSelectionList.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.customer.CorporateSelectionList.this,
+            MyDialog.createSimpleOkErrorDialog(CorporateSelectionList.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -161,16 +161,16 @@ public class CorporateSelectionList extends AppCompatActivity {
                                     }
                                     // update the adapater
                                     if (customerList.size() > 0) {
-                                        CustomerListAdapter custListAdapter = new CustomerListAdapter(customerList, com.kg.bar.customer.CorporateSelectionList.this);
+                                        CustomerListAdapter custListAdapter = new CustomerListAdapter(customerList, CorporateSelectionList.this);
                                         listViewCustomers.setAdapter(custListAdapter);
                                     }
                                 } else {
-                                    MyDialog.createSimpleOkErrorDialog(com.kg.bar.customer.CorporateSelectionList.this,
+                                    MyDialog.createSimpleOkErrorDialog(CorporateSelectionList.this,
                                             getApplicationContext().getString(R.string.dialog_error_title),
                                             getApplicationContext().getString(R.string.NoData)).show();
                                 }
                             } catch (JSONException e) {
-                                MyDialog.createSimpleOkErrorDialog(com.kg.bar.customer.CorporateSelectionList.this,
+                                MyDialog.createSimpleOkErrorDialog(CorporateSelectionList.this,
                                         getApplicationContext().getString(R.string.dialog_error_title),
                                         getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                             }
@@ -180,7 +180,7 @@ public class CorporateSelectionList extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     hideDialog();
-                    NetworkUtil.checkHttpStatus(com.kg.bar.customer.CorporateSelectionList.this, error);
+                    NetworkUtil.checkHttpStatus(CorporateSelectionList.this, error);
                 }
             }) {
                 @Override

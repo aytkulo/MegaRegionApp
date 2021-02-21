@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
-import com.kg.bar.R;
+import com.kg.megaregionapp.R;
 
 public final class MyDialog {
 

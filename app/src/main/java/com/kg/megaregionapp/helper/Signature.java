@@ -22,7 +22,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kg.bar.R;
+import com.kg.megaregionapp.R;
 
 import java.io.ByteArrayOutputStream;
 

@@ -16,13 +16,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +39,7 @@ public class UserPermission extends AppCompatActivity {
     private ProgressDialog pDialog;
     ListView listViewPermissions;
 
-    List<com.kg.bar.users.PermissionObject> permissionList = new ArrayList<>();
+    List<PermissionObject> permissionList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class UserPermission extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                com.kg.bar.users.PermissionObject pObject = (com.kg.bar.users.PermissionObject) parent.getItemAtPosition(position);
+                PermissionObject pObject = (PermissionObject) parent.getItemAtPosition(position);
             }
         });
 
@@ -86,12 +86,12 @@ public class UserPermission extends AppCompatActivity {
 
     private void updatePermission(final boolean isChecked) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.users.UserPermission.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.UserPermission.this,
+        if (!NetworkUtil.isNetworkConnected(UserPermission.this)) {
+            MyDialog.createSimpleOkErrorDialog(UserPermission.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.UserPermission.this,
+            MyDialog.createSimpleOkErrorDialog(UserPermission.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -111,7 +111,7 @@ public class UserPermission extends AppCompatActivity {
 
             JsonObjectRequest req = new JsonObjectRequest(AppConfig.URL_USER_PERMISSION, jsonObject,
                     response -> hideDialog(), error -> {
-                        NetworkUtil.checkHttpStatus(com.kg.bar.users.UserPermission.this, error);
+                        NetworkUtil.checkHttpStatus(UserPermission.this, error);
                         hideDialog();
                     }) {
                 @Override
@@ -128,12 +128,12 @@ public class UserPermission extends AppCompatActivity {
 
     private void getPermission() throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.users.UserPermission.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.UserPermission.this,
+        if (!NetworkUtil.isNetworkConnected(UserPermission.this)) {
+            MyDialog.createSimpleOkErrorDialog(UserPermission.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.UserPermission.this,
+            MyDialog.createSimpleOkErrorDialog(UserPermission.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -157,7 +157,7 @@ public class UserPermission extends AppCompatActivity {
                                 permissionSwitch.setChecked(false);
                         }
                     }, error -> {
-                        NetworkUtil.checkHttpStatus(com.kg.bar.users.UserPermission.this, error);
+                        NetworkUtil.checkHttpStatus(UserPermission.this, error);
                         hideDialog();
                     }) {
                 @Override
@@ -174,12 +174,12 @@ public class UserPermission extends AppCompatActivity {
 
     private void listPermissions() throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.users.UserPermission.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.UserPermission.this,
+        if (!NetworkUtil.isNetworkConnected(UserPermission.this)) {
+            MyDialog.createSimpleOkErrorDialog(UserPermission.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.UserPermission.this,
+            MyDialog.createSimpleOkErrorDialog(UserPermission.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -203,23 +203,23 @@ public class UserPermission extends AppCompatActivity {
                                 for (int i = 0; i < response.length(); i++) {
 
                                     JsonElement mJsonM = parser.parse(response.getString(i));
-                                    com.kg.bar.users.PermissionObject dd = gson.fromJson(mJsonM, com.kg.bar.users.PermissionObject.class);
+                                    PermissionObject dd = gson.fromJson(mJsonM, PermissionObject.class);
                                     permissionList.add(dd);
                                 }
 
                                 if (permissionList.size() > 0) {
-                                    PermissionListAdapter orderListAdapter = new PermissionListAdapter(permissionList, com.kg.bar.users.UserPermission.this);
+                                    PermissionListAdapter orderListAdapter = new PermissionListAdapter(permissionList, UserPermission.this);
                                     listViewPermissions.setAdapter(orderListAdapter);
                                 }
 
                             } else {
-                                Toast.makeText(com.kg.bar.users.UserPermission.this, getApplicationContext().getString(R.string.NoData), Toast.LENGTH_LONG).show();
+                                Toast.makeText(UserPermission.this, getApplicationContext().getString(R.string.NoData), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
-                            Toast.makeText(com.kg.bar.users.UserPermission.this, getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserPermission.this, getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
                         }
                     }, error -> {
-                        NetworkUtil.checkHttpStatus(com.kg.bar.users.UserPermission.this, error);
+                        NetworkUtil.checkHttpStatus(UserPermission.this, error);
                         hideDialog();
                     }) {
                 @Override

@@ -7,7 +7,7 @@ public class AppConfig {
 
    // public static String PURE_URL = "http://10.0.2.2:8080/";
 
-    public static String PURE_URL = "http://167.71.58.231/barakat-api/";
+    public static String PURE_URL = "http://mega.nova.kg/mega-region/";
 
     public static String URL_DELIVERY_CHECK = PURE_URL + "delivery/check";
 

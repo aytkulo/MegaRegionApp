@@ -18,13 +18,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.helper.HelperConstants;
-import com.kg.bar.helper.PostHelper;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.helper.HelperConstants;
+import com.kg.megaregionapp.helper.PostHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ import java.util.Map;
 
 public class Transaction extends AppCompatActivity {
 
-    private static final String TAG = com.kg.bar.expense.ExpenseList.class.getSimpleName();
+    private static final String TAG = ExpenseList.class.getSimpleName();
     private ProgressDialog pDialog;
     public static int DIALOG_ID1 = 1;
     public static int DIALOG_ID2 = 2;
@@ -52,7 +52,7 @@ public class Transaction extends AppCompatActivity {
     private String strDate = "";
     private int year_x, month_x, day_x;
 
-    private List<com.kg.bar.expense.Expense> expenseList = new ArrayList<>();
+    private List<Expense> expenseList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class Transaction extends AppCompatActivity {
         btn_newE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentE = new Intent(com.kg.bar.expense.Transaction.this, TransactionOperation.class);
+                Intent intentE = new Intent(Transaction.this, TransactionOperation.class);
                 intentE.putExtra(HelperConstants.EXPENSE_OPERATION, HelperConstants.EXPENSE_NEW);
                 startActivity(intentE);
             }
@@ -119,8 +119,8 @@ public class Transaction extends AppCompatActivity {
         listViewExpenses.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                com.kg.bar.expense.Expense expense = (com.kg.bar.expense.Expense) parent.getItemAtPosition(position);
-                Intent intentE = new Intent(com.kg.bar.expense.Transaction.this, TransactionOperation.class);
+                Expense expense = (Expense) parent.getItemAtPosition(position);
+                Intent intentE = new Intent(Transaction.this, TransactionOperation.class);
                 intentE.putExtra("expense", expense);
                 intentE.putExtra(HelperConstants.EXPENSE_OPERATION, HelperConstants.EXPENSE_UPDATE);
                 startActivity(intentE);
@@ -128,7 +128,7 @@ public class Transaction extends AppCompatActivity {
         });
 
         try {
-            PostHelper.listPostmans(HomeActivity.userCity, com.kg.bar.expense.Transaction.this, sPostmans);
+            PostHelper.listPostmans(HomeActivity.userCity, Transaction.this, sPostmans);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -161,7 +161,7 @@ public class Transaction extends AppCompatActivity {
                             double totalAmount = 0;
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject c = response.getJSONObject(i);
-                                com.kg.bar.expense.Expense ex = new com.kg.bar.expense.Expense();
+                                Expense ex = new Expense();
                                 ex.exAmount = c.getString("amount");
                                 ex.exDate = c.getString("expenseDate").substring(0, 10);
                                 ex.exExplanation = c.getString("postman");
@@ -171,16 +171,16 @@ public class Transaction extends AppCompatActivity {
                                 totalAmount = totalAmount + Double.parseDouble(ex.exAmount);
                             }
                             if (expenseList.size() > 0) {
-                                ExpenseListAdapter expenseListAdapter = new ExpenseListAdapter(expenseList, com.kg.bar.expense.Transaction.this);
+                                ExpenseListAdapter expenseListAdapter = new ExpenseListAdapter(expenseList, Transaction.this);
                                 listViewExpenses.setAdapter(expenseListAdapter);
                                 ed_total.setText("" + totalAmount);
                             }
                         } else {
-                            Toast.makeText(com.kg.bar.expense.Transaction.this,  getApplicationContext().getString(R.string.NoData), Toast.LENGTH_LONG).show();
+                            Toast.makeText(Transaction.this,  getApplicationContext().getString(R.string.NoData), Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(com.kg.bar.expense.Transaction.this,  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
+                        Toast.makeText(Transaction.this,  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
                     }
                 }, error -> {
                     hideDialog();

@@ -13,14 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.PostHelper;
-import com.kg.bar.orders.OrderEntry;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.PostHelper;
+import com.kg.megaregionapp.orders.OrderEntry;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +46,7 @@ public class DeleteUser extends AppCompatActivity {
         btn_delete_user = (Button) findViewById(R.id.btnDeleteUser);
 
         try {
-            PostHelper.listPostmans(HomeActivity.userCity, com.kg.bar.users.DeleteUser.this, spinner_users);
+            PostHelper.listPostmans(HomeActivity.userCity, DeleteUser.this, spinner_users);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -88,12 +88,12 @@ public class DeleteUser extends AppCompatActivity {
 
     public void deleteUser(final String id) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.users.DeleteUser.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.DeleteUser.this,
+        if (!NetworkUtil.isNetworkConnected(DeleteUser.this)) {
+            MyDialog.createSimpleOkErrorDialog(DeleteUser.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.DeleteUser.this,
+            MyDialog.createSimpleOkErrorDialog(DeleteUser.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -113,7 +113,7 @@ public class DeleteUser extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             Log.d(TAG, "User Delete Response: " + response);
                         }
-                    }, error -> NetworkUtil.checkHttpStatus(com.kg.bar.users.DeleteUser.this, error)) {
+                    }, error -> NetworkUtil.checkHttpStatus(DeleteUser.this, error)) {
 
                 @Override
                 public Map<String, String> getHeaders() {

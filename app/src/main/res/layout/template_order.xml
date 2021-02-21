@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/card_margin"
-            card_view:cardBackgroundColor="@color/light_gray"
+            card_view:cardBackgroundColor="@color/viewBg"
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:contentPadding="10dp"
             card_view:elevation="5dp">
@@ -185,7 +185,7 @@
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:elevation="5dp"
             card_view:contentPadding="10dp"
-            card_view:cardBackgroundColor="@color/light_gray">
+            card_view:cardBackgroundColor="@color/viewBg">
 
         <LinearLayout
                 android:layout_width="match_parent"

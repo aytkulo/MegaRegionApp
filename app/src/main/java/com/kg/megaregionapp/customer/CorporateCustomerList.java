@@ -18,13 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.helper.HelperConstants;
-import com.kg.bar.helper.StringData;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.helper.HelperConstants;
+import com.kg.megaregionapp.helper.StringData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,10 +37,10 @@ import java.util.Map;
 
 public class CorporateCustomerList extends AppCompatActivity {
 
-    private static final String TAG = com.kg.bar.customer.CorporateCustomerList.class.getSimpleName();
+    private static final String TAG = CorporateCustomerList.class.getSimpleName();
     private ListView listViewCustomers;
-    private List<com.kg.bar.customer.Customer> customerList = new ArrayList<>();
-    private com.kg.bar.customer.Customer customer;
+    private List<Customer> customerList = new ArrayList<>();
+    private Customer customer;
     private EditText cAddress, cCompany;
     private Button btnSearch;
     private Spinner cCity;
@@ -62,7 +62,7 @@ public class CorporateCustomerList extends AppCompatActivity {
         btnSearch = (Button) findViewById(R.id.btn_search);
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(
-                com.kg.bar.customer.CorporateCustomerList.this,
+                CorporateCustomerList.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -73,8 +73,8 @@ public class CorporateCustomerList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                customer = (com.kg.bar.customer.Customer) parent.getItemAtPosition(position);
-                Intent intentDelivery = new Intent(com.kg.bar.customer.CorporateCustomerList.this, com.kg.bar.customer.CustomerUpdate.class);
+                customer = (Customer) parent.getItemAtPosition(position);
+                Intent intentDelivery = new Intent(CorporateCustomerList.this, CustomerUpdate.class);
                 intentDelivery.putExtra("customer", customer);
                 intentDelivery.putExtra(HelperConstants.CUSTOMER_OPERATION, HelperConstants.UPDATE_CORP_CUSTOMER);
                 startActivityForResult(intentDelivery, 2);
@@ -126,7 +126,7 @@ public class CorporateCustomerList extends AppCompatActivity {
                                 for (int i = 0; i < response.length(); i++) {
                                     JSONObject c = response.getJSONObject(i);
                                     // Storing each json item in variable
-                                    com.kg.bar.customer.Customer cust = new com.kg.bar.customer.Customer();
+                                    Customer cust = new Customer();
                                     cust.cusFullAddress = c.getString("city") + "-" + c.getString("address");
                                     cust.cusFullName = c.getString("company");
                                     cust.cus_Address = c.getString("address");
@@ -138,7 +138,7 @@ public class CorporateCustomerList extends AppCompatActivity {
                                 }
                                 // update the adapater
                                 if (customerList.size() > 0) {
-                                    com.kg.bar.customer.CustomerListAdapter custListAdapter = new com.kg.bar.customer.CustomerListAdapter(customerList, com.kg.bar.customer.CorporateCustomerList.this);
+                                    CustomerListAdapter custListAdapter = new CustomerListAdapter(customerList, CorporateCustomerList.this);
                                     listViewCustomers.setAdapter(custListAdapter);
                                 }
                             } else {

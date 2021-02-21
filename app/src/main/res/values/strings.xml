@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Баракат Экспресс</string>
+    <string name="app_name">Мега Экспресс</string>
     <string name="hint_email">Логин</string>
     <string name="hint_password">Пароль</string>
     <string name="hint_new_password">Новый Пароль</string>
@@ -219,7 +219,7 @@
 
     </string-array>
 
-    <string name="title_activity_home">Баракат Экспресс</string>
+    <string name="title_activity_home">Мега Экспресс</string>
 
     <string name="google_maps_key">AIzaSyAA0GSr8VLEuKL6r0srOhYOH6Ojg4KCsgk</string>
 

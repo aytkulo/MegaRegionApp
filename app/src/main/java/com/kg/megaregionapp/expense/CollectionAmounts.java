@@ -22,14 +22,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.helper.PostHelper;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.helper.PostHelper;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CollectionAmounts extends AppCompatActivity {
-    private static final String TAG = com.kg.bar.expense.CollectionAmounts.class.getSimpleName();
+    private static final String TAG = CollectionAmounts.class.getSimpleName();
     public static int DIALOG_ID = 0;
     private EditText ed_Date, ed_PaymentAmount, ed_Remaining;
     Spinner spinner_users;
@@ -53,7 +53,7 @@ public class CollectionAmounts extends AppCompatActivity {
     private int year_x, month_x, day_x;
     private Calendar calendar;
     private ProgressDialog pDialog;
-    private List<com.kg.bar.expense.Expense> collectionList = new ArrayList<>();
+    private List<Expense> collectionList = new ArrayList<>();
     private long totalCollection = 0;
     private long totalPodOtchet = 0;
     private Switch permissionSwitch;
@@ -90,7 +90,7 @@ public class CollectionAmounts extends AppCompatActivity {
         });
 
         try {
-            PostHelper.listPostmans(HomeActivity.userCity, com.kg.bar.expense.CollectionAmounts.this, spinner_users);
+            PostHelper.listPostmans(HomeActivity.userCity, CollectionAmounts.this, spinner_users);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -139,12 +139,12 @@ public class CollectionAmounts extends AppCompatActivity {
 
     private void updatePermission(final boolean isChecked, final String postman) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.expense.CollectionAmounts.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+        if (!NetworkUtil.isNetworkConnected(CollectionAmounts.this)) {
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -173,7 +173,7 @@ public class CollectionAmounts extends AppCompatActivity {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    NetworkUtil.checkHttpStatus(com.kg.bar.expense.CollectionAmounts.this, error);
+                    NetworkUtil.checkHttpStatus(CollectionAmounts.this, error);
                     hideDialog();
                 }
             }) {
@@ -190,12 +190,12 @@ public class CollectionAmounts extends AppCompatActivity {
 
     private void getPermission(final String postman) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.expense.CollectionAmounts.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+        if (!NetworkUtil.isNetworkConnected(CollectionAmounts.this)) {
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -211,7 +211,7 @@ public class CollectionAmounts extends AppCompatActivity {
                                 JsonParser parser = new JsonParser();
                                 Gson gson = new Gson();
                                 JsonElement mJsonM = parser.parse(response.toString());
-                                com.kg.bar.expense.CollectionAmounts.Permission dd = gson.fromJson(mJsonM, com.kg.bar.expense.CollectionAmounts.Permission.class);
+                                CollectionAmounts.Permission dd = gson.fromJson(mJsonM, CollectionAmounts.Permission.class);
                                 if(dd.permission)
                                     permissionSwitch.setChecked(false);
                                 else
@@ -223,7 +223,7 @@ public class CollectionAmounts extends AppCompatActivity {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    NetworkUtil.checkHttpStatus(com.kg.bar.expense.CollectionAmounts.this, error);
+                    NetworkUtil.checkHttpStatus(CollectionAmounts.this, error);
                     permissionOperation = true;
                 }
             }) {
@@ -240,12 +240,12 @@ public class CollectionAmounts extends AppCompatActivity {
 
     public void listCollections(final String collectionDate, final String postman) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.expense.CollectionAmounts.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+        if (!NetworkUtil.isNetworkConnected(CollectionAmounts.this)) {
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -278,7 +278,7 @@ public class CollectionAmounts extends AppCompatActivity {
                                     int count = 1;
                                     for (int i = 0; i < response.length(); i++) {
                                         JSONObject c = response.getJSONObject(i);
-                                        com.kg.bar.expense.Expense ex = new com.kg.bar.expense.Expense();
+                                        Expense ex = new Expense();
                                         ex.exAmount = c.getString("amount");
                                         summa = summa + Long.valueOf(ex.exAmount);
                                         ex.exDate = count + ".";
@@ -291,14 +291,14 @@ public class CollectionAmounts extends AppCompatActivity {
                                     totalCollection = summa;
 
                                     if (summa != 0) {
-                                        com.kg.bar.expense.Expense ex = new com.kg.bar.expense.Expense();
+                                        Expense ex = new Expense();
                                         ex.exAmount = String.valueOf(summa);
                                         ex.exName = "Жалпы";
                                         collectionList.add(ex);
                                     }
                                     // update the adapater
                                     if (collectionList.size() > 0) {
-                                        CollectionListAdapter collListAdapter = new CollectionListAdapter(collectionList, com.kg.bar.expense.CollectionAmounts.this);
+                                        CollectionListAdapter collListAdapter = new CollectionListAdapter(collectionList, CollectionAmounts.this);
                                         collectionListView.setAdapter(collListAdapter);
                                     }
                                 }
@@ -306,7 +306,7 @@ public class CollectionAmounts extends AppCompatActivity {
                                 ed_Remaining.setText(totalPodOtchet + totalCollection + "");
 
                             } catch (JSONException e) {
-                                MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+                                MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                                         getApplicationContext().getString(R.string.dialog_error_title),
                                         getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                             }
@@ -316,7 +316,7 @@ public class CollectionAmounts extends AppCompatActivity {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    NetworkUtil.checkHttpStatus(com.kg.bar.expense.CollectionAmounts.this, error);
+                    NetworkUtil.checkHttpStatus(CollectionAmounts.this, error);
                     hideDialog();
                 }
             }) {
@@ -335,12 +335,12 @@ public class CollectionAmounts extends AppCompatActivity {
 
     public void listTransactions(final String date1, final String date2, final String postman) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.expense.CollectionAmounts.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+        if (!NetworkUtil.isNetworkConnected(CollectionAmounts.this)) {
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -382,7 +382,7 @@ public class CollectionAmounts extends AppCompatActivity {
                                 listCollections(ed_Date.getText().toString(), postman);
 
                             } catch (JSONException | ParseException e) {
-                                MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.CollectionAmounts.this,
+                                MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
                                         getApplicationContext().getString(R.string.dialog_error_title),
                                         getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                             }
@@ -391,7 +391,7 @@ public class CollectionAmounts extends AppCompatActivity {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    NetworkUtil.checkHttpStatus(com.kg.bar.expense.CollectionAmounts.this, error);
+                    NetworkUtil.checkHttpStatus(CollectionAmounts.this, error);
                 }
             }) {
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.kg.bar.R;
+import com.kg.megaregionapp.R;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import java.util.List;
 
 class CollectionListAdapter extends BaseAdapter {
     private Context context;
-    private List<com.kg.bar.expense.Expense> valueList;
+    private List<Expense> valueList;
 
-    CollectionListAdapter(List<com.kg.bar.expense.Expense> listValue, Context context) {
+    CollectionListAdapter(List<Expense> listValue, Context context) {
         this.context = context;
         this.valueList = listValue;
     }
