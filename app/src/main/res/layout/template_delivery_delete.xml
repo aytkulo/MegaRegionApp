@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_sender"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/light_gray">
+
+        <TextView
+                android:id="@+id/textView37"
+                style="@style/MainLabels"
+                android:text="@string/senderLabel"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardBackgroundColor="@color/light_gray"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:contentPadding="10dp"
+            card_view:elevation="5dp">
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView8"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/City"/>
+
+                <Spinner
+                        android:id="@+id/spinner_senderCity"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="0.7"
+                        android:background="@color/white"
+                        android:clickable="false"
+                        android:gravity="center_vertical"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView10"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/PhoneNo"/>
+
+                <EditText
+                        android:id="@+id/senderPhone"
+                        style="@style/InputTexts"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:inputType="phone"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView9"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/FullName"/>
+
+                <EditText
+                        android:id="@+id/senderName"
+                        style="@style/InputTexts"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:inputType="textPersonName"
+                        android:enabled="false"
+                        android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView111"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/Company"/>
+
+                <EditText
+                        android:id="@+id/senderCompany"
+                        style="@style/InputTexts"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:enabled="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView11"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/Address"/>
+
+                <EditText
+                        android:id="@+id/senderAddress"
+                        style="@style/InputTexts"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:enabled="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_receiver"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/light_gray">
+
+        <TextView
+                android:id="@+id/textView7"
+                style="@style/MainLabels"
+                android:text="@string/receiverLabel"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardBackgroundColor="@color/light_gray"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:contentPadding="10dp"
+            card_view:elevation="5dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView12"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/City"/>
+
+                <Spinner
+                        android:id="@+id/spinner_receiverCity"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="0.7"
+                        android:background="@color/white"
+                        android:clickable="false"
+                        android:gravity="center_vertical"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+
+                <TextView
+                        android:id="@+id/textView14"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/PhoneNo"/>
+
+                <EditText
+                        android:id="@+id/receiverPhone"
+                        style="@style/InputTexts"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:inputType="phone"
+                        android:enabled="false"
+                        android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView13"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/FullName"/>
+
+                <EditText
+                        android:id="@+id/receiverName"
+                        style="@style/InputTexts"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:inputType="textPersonName"
+                        android:enabled="false"
+                        android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView143"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/Company"/>
+
+                <EditText
+                        android:id="@+id/receiverCompany"
+                        style="@style/InputTexts"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:enabled="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView15"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/Address"/>
+
+                <EditText
+                        android:id="@+id/receiverAddress"
+                        style="@style/InputTexts"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.7"
+                        android:inputType="textPersonName"
+                        android:enabled="false"
+                        android:text=""/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_package"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/light_gray">
+
+        <TextView
+                android:id="@+id/textView16"
+                style="@style/MainLabels"
+                android:text="@string/deliveryLabel"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:contentPadding="10dp"
+            card_view:cardBackgroundColor="@color/light_gray">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView17"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/DeliveryType"/>
+
+                <Spinner
+                        android:id="@+id/spinner_deliveryType"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="0.2"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="0dp"
+                        android:background="@color/white"
+                        android:clickable="false"
+                        android:entries="@array/deliveriTypes"/>
+
+                <TextView
+                        android:id="@+id/textView18"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.28"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:textAlignment="gravity"
+                        android:text="@string/DeliveryCount"/>
+
+                <EditText
+                        android:id="@+id/deliveryCount"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:inputType="phone"
+                        style="@style/InputTexts"
+                        android:enabled="false"
+                        android:text="1"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView19"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:text="@string/ServiceCost"/>
+
+                <EditText
+                        android:id="@+id/deliveryCost"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        style="@style/InputTexts"
+                        android:inputType="phone"
+                        android:enabled="false"
+                        android:text="250"/>
+
+                <TextView
+                        android:id="@+id/textView20"
+                        style="@style/InlineLabels"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.28"
+                        android:gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:textAlignment="gravity"
+                        android:text="@string/ItemCost"/>
+
+                <EditText
+                        android:id="@+id/deliveryItemCost"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        style="@style/InputTexts"
+                        android:inputType="phone"
+                        android:enabled="false"
+                        android:text="0"/>
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:text="@string/Attention"
+                    style="@style/InlineLabels"
+                    android:textColor="#f44336"/>
+
+            <EditText
+                    android:id="@+id/deliveryExplanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:textColor="#f44336"
+                    android:textStyle="bold|italic"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:inputType="textMultiLine|textCapCharacters"
+                    style="@style/InputTexts"/>
+
+            <RadioGroup
+                    android:id="@+id/rg_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                <RadioButton
+                        android:id="@+id/rb_rc"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:enabled="false"
+                        android:layout_weight="1"
+                        android:text="@string/ReceiverPays"
+                        style="@style/InlineLabels"/>
+
+                <RadioButton
+                        android:id="@+id/rb_sc"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:text="@string/senderPaid"
+                        style="@style/InlineLabels"/>
+
+                <RadioButton
+                        android:id="@+id/rb_sb"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:enabled="false"
+                        android:layout_weight="1"
+                        android:text="@string/SenderBankTransfer"
+                        style="@style/InlineLabels"/>
+
+                <RadioButton
+                        android:id="@+id/rb_rb"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:text="@string/ReceiverBankTransfer"
+                        style="@style/InlineLabels"/>
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_saving"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/corporateBackColor">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/btn_delete_delivery"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.48"
+                    android:layout_height="40dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/DeliveryDelete"
+                    android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

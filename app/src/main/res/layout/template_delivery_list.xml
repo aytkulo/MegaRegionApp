@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/light_gray"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/txt_number"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15dp"
+                android:textStyle="bold"/>
+
+        <ImageView
+                android:id="@+id/order_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:focusable="false"
+
+                card_view:srcCompat="@drawable/icon_delivered_40"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/txtSenderAddress"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="match_parent"
+                        android:focusable="false"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:paddingRight="5dp"
+                        android:text=""/>
+                <TextView
+                        android:id="@+id/txtSenderName"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:focusable="false"
+                        android:text=""/>
+
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/white"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/txtReceiverName"
+                        style="@style/InlineLabelsList"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:focusable="false"
+                        android:text=""/>
+
+                <TextView
+                        android:id="@+id/txtReceiverAddress"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:focusable="false"
+                        android:text=""/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/colorPrimary"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/txtAssignedPostman"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="match_parent"
+                        android:focusable="false"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+
+                <TextView
+                        android:id="@+id/txtAcceptedPostman"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:focusable="false"
+                        android:text=""
+                        android:textColor="@color/color_green"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/txtDeliveredPostman"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:focusable="false"
+                        android:text=""
+                        android:textColor="@color/color_green"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/ed_dCount"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.05"
+                        android:focusable="false"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                        android:id="@+id/ed_dType"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.35"
+                        android:focusable="false"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"/>
+
+                <EditText
+                        android:id="@+id/ed_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_sCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_sName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_sPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_sAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_sCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_rCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_rName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_rPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_rAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_rCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_dCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_diCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_payment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_diExpl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+                <EditText
+                        android:id="@+id/ed_paidAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        android:text=""/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_ls_Deliver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/DeliverDelivery"
+            android:background="@color/colorAccent"/>
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/corporateBackColor"/>
+        <Button
+            android:id="@+id/btn_ls_Update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/DeliverUpdate"
+            android:background="@color/colorAccent"/>
+
+
+    </LinearLayout>
+-->
+
+</LinearLayout>

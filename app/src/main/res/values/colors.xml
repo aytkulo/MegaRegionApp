@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e55100</color>
+    <color name="colorPrimaryDark">#B0BEC5</color>
+    <color name="colorAccent">#06BA17</color>
+    <!--
+        <color name="colorPrimary">#FF0266</color>
+         <color name="colorAccent">#FF0266</color>-->
+
+    <color name="corporateBackColor">#BBDEFB</color>
+
+    <color name="colorBlueDark">#3F51B5</color>
+    <color name="dataBackColor">#ffeb3b</color>
+    <color name="colorTurquase">#03DAC5</color>
+
+    <color name="deeppurple">#7c4dff</color>
+    <color name="green">#00bfa5</color>
+    <color name="green_deep">#046053</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="light_black">#444444</color>
+
+
+    <color name="gray">#9E9E9E</color>
+    <color name="light_gray">#E0E0E0</color>
+    <color name="blue_gray">#546e7a</color>
+    <color name="light_blue">#BBDEFB</color>
+    <color name="blue_light">#2196F3</color>
+    <color name="deep_orange">#dd2c00</color>
+    <color name="color_green">#039978</color>
+    <color name="orange">#e55100</color>
+    <color name="orange_light">#ffac42</color>
+    <color name="yellow">#ffeb3b</color>
+    <color name="pink">#FF0266</color>
+    <color name="pink_very_light">#F6B9D1</color>
+
+    <color name="course_section_color">#FDF9ED</color>
+
+    <color name="green_very_light">#E7FBE8</color>
+    <color name="green_light">#A5D6A7</color>
+    <color name="text_field_back">#ECEFF1</color>
+    <color name="green_medium">#26ae90</color>
+    <color name="input_register_bg">#3b4148</color>
+
+    <color name="lacivert">#391468</color>
+    <color name="azlacivert">#6230A1</color>
+
+
+    <color name="light_white">#F5F5F5</color>
+
+    <color name="contentBodyColor">#000</color>
+    <color name="contentTextColor">#fff</color>
+    <color name="bottomNavigationBackground">#000</color>
+    <color name="miniTitleColor">#fff</color>
+
+
+    <color name="startblue">#9AD1FD</color>
+    <color name="endblue">#99D1FF</color>
+
+
+    <color name="lightBg">#eceff1</color>
+    <color name="bg_login">#26ae90</color>
+    <color name="bg_register">#2e3237</color>
+    <color name="bg_main">#428bca</color>
+    <color name="input_login">#222222</color>
+    <color name="input_login_hint">#999999</color>
+    <color name="input_register">#888888</color>
+    <color name="input_register_hint">#5e6266</color>
+    <color name="btn_login">#26ae90</color>
+    <color name="btn_login_bg">#eceef1</color>
+    <color name="lbl_name">#333333</color>
+    <color name="btn_logut_bg">#ff6861</color>
+
+    <color name="viewBg">#f1f5f8</color>
+    <color name="album_title">#4c4c4c</color>
+
+
+</resources>

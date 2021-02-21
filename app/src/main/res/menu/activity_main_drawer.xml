@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:checkableBehavior="single" android:id="@+id/preOrder">
+
+        <item
+            android:id="@+id/nav_preorder_new"
+            android:icon="@drawable/ic_preorder"
+            android:title="@string/NewOrder"/>
+
+        <item
+            android:id="@+id/nav_preorder_list"
+            android:icon="@drawable/ic_preorderass"
+            android:title="@string/OrderList"/>
+
+        <item
+            android:id="@+id/nav_preorder_assigned"
+            android:icon="@drawable/ic_delivlist"
+            android:title="@string/AssignedOrders"/>
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/Order">
+
+        <item
+            android:id="@+id/nav_delivery_delete"
+            android:icon="@drawable/ic_menu_delete"
+            android:title="@string/DeliveryDelete"/>
+
+        <item
+            android:id="@+id/nav_delivery_status"
+            android:icon="@drawable/ic_delstatusupdate"
+            android:title="@string/DeliveryStatus"/>
+
+        <item
+            android:id="@+id/nav_delivery_debt"
+            android:icon="@drawable/icon_expense"
+            android:title="@string/DeliveryDebs"/>
+
+        <item
+            android:id="@+id/nav_delivery_who"
+            android:icon="@drawable/ic_delivlist"
+            android:title="@string/DeliveryWho"/>
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/others">
+        <item
+            android:id="@+id/nav_corp_client_list"
+            android:icon="@drawable/ic_customer"
+            android:title="@string/CropClientList"/>
+        <item
+            android:id="@+id/nav_client_new"
+            android:icon="@drawable/ic_delupdate"
+            android:title="@string/ClientNew"/>
+        <item
+            android:id="@+id/nav_client_list"
+            android:icon="@drawable/ic_customer"
+            android:title="@string/ClientList"/>
+        <!--
+        <item
+            android:id="@+id/nav_send_sms"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/smsSending" />-->
+    </group>
+
+    <group android:checkableBehavior="single" android:id="@+id/finance">
+<!--
+        <item
+            android:id="@+id/nav_finance"
+            android:icon="@drawable/ic_preorder"
+            android:title="@string/Reports"/>
+
+        <item
+            android:id="@+id/nav_expense_op"
+            android:icon="@drawable/icon_expense"
+            android:title="@string/Expenses"/>
+-->
+
+        <item
+            android:id="@+id/nav_postman_new"
+            android:icon="@drawable/ic_postman"
+            android:title="@string/PostmanNew"/>
+        <item
+            android:id="@+id/nav_delete_user"
+            android:icon="@drawable/ic_menu_delete"
+            android:title="@string/PostmanDelete"/>
+        <item
+            android:id="@+id/nav_postman_positions"
+            android:icon="@drawable/ic_delupdate"
+            android:title="@string/PostmanUpdatePermission"/>
+
+        <item
+            android:id="@+id/nav_transactions"
+            android:icon="@drawable/icon_expense"
+            android:title="@string/Transactons"/>
+
+        <item
+            android:id="@+id/nav_collections"
+            android:icon="@drawable/icon_expense"
+            android:title="@string/Collections"/>
+
+
+    </group>
+
+
+</menu>

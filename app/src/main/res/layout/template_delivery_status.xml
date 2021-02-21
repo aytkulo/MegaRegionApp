@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/corporateBackColor">
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+        <CheckBox
+                android:id="@+id/checkTick"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text=""/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView121"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:text=""
+                        android:focusable="false"/>
+
+
+                <TextView
+                        android:id="@+id/txtSenderAddress"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:text=""
+                        android:focusable="false"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textView9"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:text="@string/Sender"
+                        android:focusable="false"/>
+
+                <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"/>
+
+                <TextView
+                        android:id="@+id/txtSenderName"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:text=""
+                        android:focusable="false"/>
+
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textViesd"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:text="@string/Receiver"
+                        android:focusable="false"/>
+
+                <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"/>
+
+                <TextView
+                        android:id="@+id/txtReceiverName"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:text=""
+                        android:focusable="false"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textViessd"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <TextView
+                        android:id="@+id/txtReceiverAddress"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:text=""
+                        android:focusable="false"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/textResLabel"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.2"
+                        android:text="@string/AssignedPostman"
+                        android:focusable="false"/>
+
+                <TextView
+                        android:id="@+id/txtAssignedPostman"
+                        style="@style/InlineLabelsList"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.8"
+                        android:text=""
+                        android:focusable="false"
+                        android:textColor="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal">
+
+                <EditText
+                        android:id="@+id/ed_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_sCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_sName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_sPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_sAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_sCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_rCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_rName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_rPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_rAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_rCompany"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_dType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_dCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_dCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_diCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_payment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+                <EditText
+                        android:id="@+id/ed_diExpl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:focusable="false"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

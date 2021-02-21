@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              android:orientation="horizontal" android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/light_gray">
+
+    <ImageView
+            android:id="@+id/order_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            card_view:srcCompat="@drawable/logo"
+            android:focusable="false"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/txtAddress"
+                    style="@style/InlineLabelsList"
+                    android:layout_width="match_parent"
+                    android:text=""
+                    android:layout_marginBottom="3dp"
+                    android:focusable="false"/>
+
+            <TextView
+                    android:id="@+id/txtName"
+                    style="@style/InlineLabelsList"
+                    android:layout_width="match_parent"
+                    android:text=""
+                    android:layout_marginBottom="3dp"
+                    android:focusable="false"/>
+
+            <TextView
+                android:id="@+id/txtResponsible"
+                style="@style/InlineLabelsList"
+                android:layout_width="match_parent"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:layout_marginBottom="3dp"
+                android:focusable="false"/>
+
+            <TextView
+                android:id="@+id/txtTime"
+                style="@style/InlineLabelsList"
+                android:layout_width="match_parent"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:focusable="false"/>
+
+
+        <TextView
+            android:id="@+id/orderExplanation"
+            style="@style/InlineLabelsList"
+            android:layout_width="match_parent"
+            android:text=""
+            android:maxLines="2"
+            android:lines="2"
+            android:textColor="@color/colorPrimary"
+            android:focusable="false"/>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+
+            <EditText
+                    android:id="@+id/ed_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_sCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_sName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_sPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_sAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_sCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_rCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_rName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_rPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_rAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+
+            <EditText
+                    android:id="@+id/ed_rCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:focusable="false"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,254 @@
+<resources>
+    <string name="app_name">Баракат Экспресс</string>
+    <string name="hint_email">Логин</string>
+    <string name="hint_password">Пароль</string>
+    <string name="hint_new_password">Новый Пароль</string>
+    <string name="hint_name">Полная имя</string>
+    <string name="btn_login">ВОЙТИ</string>
+    <string name="btn_register">РЕГИСТРАЦИЯ</string>
+    <string name="btn_update">ОБНОВИТь</string>
+
+
+    <string name="RecordAlreadyExists">Данный логин уже зарегистрирован!</string>
+
+    <string name="UserPermission">Запрет на изменение!</string>
+
+
+    <string name="Postman">Курьер</string>
+
+    <string name="deliveryLabel">Посылка</string>
+    <string name="senderLabel">Отправитель</string>
+    <string name="receiverLabel">Получатель</string>
+    <string name="newDelivery">Получить</string>
+    <string name="orderInformation">Информация о заказе</string>
+
+    <string name="saveInformation">Сохранить данные</string>
+
+    <string name="InformationWillBeDeleted">Информация будет удалена!</string>
+
+    <string name="Sender">Отправитель</string>
+    <string name="Receiver">Получатель</string>
+    <string name="Received">Получил</string>
+
+    <string name="Name">Имя</string>
+
+    <string name="Origin">Откуда:</string>
+    <string name="Destination">Куда:</string>
+    <string name="Province">Область</string>
+    <string name="City">Город</string>
+    <string name="Company">Фирма:</string>
+    <string name="FullName">ФИО</string>
+    <string name="PhoneNo">Тел:</string>
+    <string name="Address">Адрес</string>
+    <string name="Client">Клиент</string>
+    <string name="DeliveryType">Тип</string>
+    <string name="DeliveryCount">Количество</string>
+    <string name="ServiceCost">Стоимость</string>
+    <string name="PaidAmount">Оплачено</string>
+    <string name="ItemCost">Выкуп</string>
+    <string name="senderPaid">Оплата наличными за счет отправителя</string>
+    <string name="ItemPaid">Нерсе акысы төлөнөт.</string>
+    <string name="Attention">Примечание!!!</string>
+    <string name="AcceptRules">Согласeн с условиями.</string>
+    <string name="Clear">Очистить</string>
+    <string name="SaveSignature">Сохранить</string>
+    <string name="TakeSendersSignature">Подпись отправителя</string>
+    <string name="TakeReceiversSignature">Подпись получателя</string>
+    <string name="SaveDeliveryInformation">Сохранить данные об отправке</string>
+    <string name="DeliverDelivery">Доставить</string>
+    <string name="DeliverUpdate">Изменить данные</string>
+    <string name="AssignedPostman">Ответственный курьер</string>
+    <string name="AssignedSector">Участ.+Инфо</string>
+    <string name="Sector">Участок</string>
+    <string name="OrderSector">Участок</string>
+    <string name="DeliveredPostman">Доставил</string>
+    <string name="AcceptedPostman">Получил</string>
+    <string name="AddCustomerToDB">Добавить клиента в базу.</string>
+    <string name="CustomerInformation">Информация о клиенте</string>
+    <string name="SenderBankTransfer">Отправитель оплачивает через банк</string>
+    <string name="ReceiverBankTransfer">Получатель оплачивает через банк</string>
+    <string name="ReceiverPays">Оплата наличными за счет получателя</string>
+
+    <string name="BuyingDebt">Выкуп в долг.</string>
+    <string name="BuyingTransfer">Перечисление.</string>
+    <string name="BuyingCash">Оплата наличными.</string>
+
+    <string name="Date">Дата:</string>
+    <string name="Amount">Сумма</string>
+    <string name="Explanation">Информация</string>
+
+    <string name="Save">Сохранить</string>
+    <string name="Update">Обновить</string>
+    <string name="List">Список</string>
+    <string name="Search">Искать</string>
+    <string name="Delete">Удалить</string>
+
+    <string name="Filter">Фильтр</string>
+
+    <string name="Close">Закрыть.</string>
+    <string name="NewExpense">Новый запись</string>
+
+    <string name="NewPayment">Жаңы подотчёт</string>
+    <string name="PodOtchet">Подотчёт</string>
+    <string name="PrincipleRemaining">Остаток</string>
+
+    <string name="TitleAttention">Внимание!!!</string>
+    <string name="UserWillBeDeleted">полностью удаляется из системы!</string>
+    <string name="UserDeleted">Пользователь полностью удалён из системы!</string>
+
+    <string name="DeliveryDelivered">Посылка доставлена.</string>
+    <string name="DeliveryAccepted">Курьер получил посылку.</string>
+
+    <string name="FillAllDataCorrectly">Заполнить все нужные поля.</string>
+
+    <string name="PasswordShouldBeMoreThanFourCharacters">Пароль должен содержать не менее восьми символов</string>
+    <string name="PasswordShouldBeLessThanTenCharacters">Пароль должен содержать не более шестнадцати символов</string>
+
+    <string name="SendersSignature">Подпись отправителя</string>
+    <string name="ReceiversSignature">Подпись получателя</string>
+
+    <string name="AcceptMessage">Ваша отправка принята.</string>
+    <string name="DeliveryMessage">Ваша отправка доставлена.</string>
+    <string name="DeliveryNumber">Номер заказа:</string>
+
+    <string name="NotAcceptedYet">Не полученные заказы</string>
+
+
+    <string name="AcceptDelivery">Получение</string>
+    <string name="AssignedOrders">ПОЛУЧИТЬ ЗАКАЗ</string>
+    <string name="DeliveryDelivery">Доставка</string>
+    <string name="AssignDelivery">Бөлүштүрүү</string>
+    <string name="UpdateDelivery">Изменить</string>
+    <string name="DeliveryMainList">Список</string>
+
+    <!-- Menu -->
+    <string name="DeliveryWho">ПО КЛИЕНТУ</string>
+    <string name="NewOrder">НОВЫЙ ЗАКАЗ</string>
+    <string name="OrderList">СПИСОК ЗАКАЗОВ</string>
+    <string name="DeliveryList">ПОСЫЛКИ</string>
+    <string name="DeliveryDelete">УДАЛЕНИЕ</string>
+    <string name="DeliveryStatus">НЕ ЗАКРЫТЫЕ</string>
+    <string name="DeliveryDebs">ПОСЫЛКИ В ДОЛГ</string>
+
+    <string name="CropClientList">КОРП. КЛИЕНТЫ</string>
+
+    <string name="ClientList">СПИСОК КЛИЕНТОВ</string>
+    <string name="ClientNew">НОВЫЙ КЛИЕНТ</string>
+    <string name="Reports">ОТЧЁТЫ</string>
+    <string name="Expenses">РАСХОДЫ</string>
+    <string name="Transactons">ПОДОТЧЁТ</string>
+    <string name="Collections">ОТЧЁТ КУРЬЕРА</string>
+    <string name="PostmanNew">НОВЫЙ КУРЬЕР</string>
+    <string name="PostmanDelete">УДАЛЕНИЕ КУРЬЕРА</string>
+    <string name="PostmanUpdatePermission">РАЗРЕШЕНИЕ</string>
+    <string name="smsSending">СМС РАССЫЛКА</string>
+    <string name="ChangePassword">Изменить пароль</string>
+    <string name="Logout">Выход</string>
+    <string name="Russian">Русский</string>
+    <string name="Kyrgyz">Кыргызча</string>
+
+    <string name="SEND">ОТПРАВИТЬ</string>
+    <string name="SMS">CMC</string>
+
+    <string name="LanguageChanged">Вы изменили язык программы!</string>
+
+
+    <string name="ifDifferentReceiver">ФИО фактического получателья.</string>
+
+    <string-array name="delivery_status">
+        <item>....</item>
+        <item>Отправка доставлена в офис курьерской фирмы.</item>
+        <item>Отправка отправлена в место назначение.</item>
+        <item>Курьер выехал на доставку.</item>
+        <item>Опоздание из за непредвиденных обстоятельств.</item>
+    </string-array>
+
+    <string name="CityBishkek">Бишкек</string>
+    <string name="CityOsh">Ош</string>
+    <string name="CityJalalAbad">Жалал-Абад</string>
+    <string name="CityTalas">Талас</string>
+    <string name="CityNaryn">Нарын</string>
+    <string name="CityBatken">Баткен</string>
+    <string name="CityKarakol">Каракол</string>
+
+    <string name="GenerateInvoice">Акт и счёт-фактура</string>
+    <string name="GenerateExpenseReport">Расход отчёту</string>
+
+    <string name="GenerateDeliveryBoughts">Список купленных</string>
+    <string name="GenerateDeliveryList">Список посылок</string>
+    <string name="GenerateFinancialReport">Финасовый отчёт</string>
+    <string name="BankPaidDeliveries">Список банковских переводов</string>
+
+
+    <string name="CashPayments">Наличный расчёт</string>
+    <string name="BankPayments">Банковские переводы</string>
+
+    <string name="PaymentType">Тип оплаты</string>
+
+    <string name="FillTheReceiverData">Вы должны получить подпись получателя или указать имя фамилию!</string>
+
+
+
+    <string-array name="roles">
+        <item>ADMIN</item>
+        <item>POSTMAN</item>
+        <item>OPERATOR</item>
+    </string-array>
+
+    <string-array name="payment_types">
+        <item>%</item>
+        <item>Оплата наличными</item>
+        <item>Оплата через банк</item>
+    </string-array>
+
+
+    <string-array name="deliveriTypes">
+        <item>ДОКУМЕНТ</item>
+        <item>КОНВЕРТ</item>
+        <item>КОРОБКА</item>
+        <item>ПАКЕТ</item>
+        <item>ДРУГОЕ</item>
+    </string-array>
+
+    <string-array name="paymentTypes">
+        <item></item>
+        <item>Оплата наличными за счет отправителя</item>
+        <item>Оплата наличными за счет получателя</item>
+        <item>Отправитель оплачивает через банк</item>
+        <item>Получатель оплачивает через банк</item>
+
+    </string-array>
+
+    <string name="title_activity_home">Баракат Экспресс</string>
+
+    <string name="google_maps_key">AIzaSyAA0GSr8VLEuKL6r0srOhYOH6Ojg4KCsgk</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_show_location">Map</string>
+    <string name="DeliveryAssign"/>
+
+    <string name="OK">OK</string>
+
+    <string name="GOON">Продолжить</string>
+    <string name="CANCEL">Отменить</string>
+    <string name="DEBTISPAID">Вы действительно оплатили долг? \nОперация не обратима. \nЗакрыть долг?</string>
+
+    <string name="dialog_error_title">Внимание</string>
+    <string name="dialog_action_ok">ОК</string>
+    <string name="sending_data_to_server">Подождите, идет синхронизация</string>
+    <string name="check_internet">Проверьте интернет соединение</string>
+    <string name="url_not_found">Ссылка не найдена</string>
+    <string name="server_error">Наблюдается низкая скорость или сервер перегружен. Попробуйте еще раз через некоторое время.</string>
+    <string name="relogin">Время вашей сессии истекло, войдите заново, пожалуйста.</string>
+    <string name="NoData">Нет данных.</string>
+    <string name="ErrorWhenLoading">Произошла ошибка при обработке данных. Попробуйте еще раз позже.</string>
+
+    <string name="PressAgainToExit">Нажмите еще раз для выхода</string>
+
+    <string name="Processing">Обработка данных...</string>
+
+</resources>
+

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_s3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/light_blue">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    style="@style/InlineLabels"
+                    android:text="@string/City"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"/>
+
+                <Spinner
+                    android:id="@+id/sp_Origin"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.7"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"/>
+
+                <Spinner
+                    android:id="@+id/sp_Destination"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.7"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/light_blue">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4"
+                    style="@style/InlineLabels"
+                    android:text="@string/Date"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"/>
+
+                <EditText
+                    android:id="@+id/beginDate"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.9"
+                    style="@style/MainLabels"
+                    android:focusable="false"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="3dp"/>
+
+                <EditText
+                    android:id="@+id/enDate"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.9"
+                    style="@style/MainLabels"
+                    android:focusable="false"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="3dp"/>
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/light_blue">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    style="@style/InlineLabels"
+                    android:text="@string/PhoneNo"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"/>
+
+
+                <EditText
+                    android:id="@+id/senderPhone"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.9"
+                    style="@style/MainLabels"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="3dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_dList"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/List"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        card_view:cardCornerRadius="@dimen/card_album_radius"
+        card_view:elevation="5dp"
+        card_view:cardBackgroundColor="@color/dataBackColor">
+
+        <ListView
+            android:id="@+id/listViewDeliveries"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/white"
+            android:dividerHeight="5dp"
+            android:listSelector="@drawable/list_selector"
+            android:layout_marginTop="0dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

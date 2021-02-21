@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center"
+              tools:context="com.kg.bar.expense.FinancialReport"
+              android:weightSum="1">
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+        <EditText
+                android:id="@+id/ed_date1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                style="@style/MainLabels"
+        />
+
+        <EditText
+                android:id="@+id/ed_date2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginRight="10dp"
+                style="@style/MainLabels"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+
+
+        <Button
+                android:id="@+id/btn_generate_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/btn_login"
+                android:text="@string/GenerateFinancialReport"
+                android:textColor="@color/white"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+        />
+
+
+        <Button
+                android:id="@+id/btn_generate_delivery_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/btn_login"
+                android:text="@string/BankPaidDeliveries"
+                android:textColor="@color/white"/>
+
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+        />
+
+        <Button
+                android:id="@+id/btn_generate_bought_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/btn_login"
+                android:text="@string/GenerateDeliveryBoughts"
+                android:textColor="@color/white"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+        />
+
+        <Button
+                android:id="@+id/btn_expense_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/btn_login"
+                android:text="@string/GenerateExpenseReport"
+                android:textColor="@color/white"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+        />
+
+        <Button
+                android:id="@+id/btn_proforma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/btn_login"
+                android:text="@string/GenerateInvoice"
+                android:textColor="@color/white"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+        />
+
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/lightBg"
+        />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
+
+            <Spinner
+                    android:id="@+id/spinner_senderCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"/>
+
+            <Spinner
+                    android:id="@+id/spinner_receiverCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"/>
+
+            <Button
+                    android:id="@+id/btn_generate_all_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/btn_login"
+                    android:text="@string/GenerateDeliveryList"
+                    android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <EditText
+            android:id="@+id/ed_file_location"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textMultiLine"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+</LinearLayout>

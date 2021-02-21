@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center_vertical"
+              tools:context="com.kg.bar.helper.Signature">
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_package"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/btn_login">
+
+        <TextView
+                android:id="@+id/textView16"
+                style="@style/MainLabels"
+                android:text="Кол тамга"
+                android:textColor="@color/white"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_Receiver"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp">
+
+        <EditText
+                android:id="@+id/differentReceiver"
+                style="@style/InputTexts"
+                android:hint="@string/ifDifferentReceiver"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_package2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/card_margin"
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            card_view:elevation="5dp"
+            card_view:cardBackgroundColor="@color/btn_login">
+
+        <LinearLayout
+                android:layout_height="350dp"
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_gravity="center_horizontal"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+        <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/btn_login"
+                android:text="@string/Clear"
+                android:textColor="@color/white"/>
+
+        <View
+                android:layout_width="2dip"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+        />
+        <Button
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/SaveSignature"
+                android:background="@color/btn_login"
+                android:textColor="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>
