@@ -23,14 +23,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.customer.Customer;
-import com.kg.bar.delivery.Delivery;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.helper.StringData;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.customer.Customer;
+import com.kg.megaregionapp.delivery.Delivery;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.helper.StringData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,6 +54,7 @@ import jxl.format.Border;
 import jxl.format.BorderLineStyle;
 import jxl.format.UnderlineStyle;
 import jxl.write.Label;
+import jxl.write.Number;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -62,7 +63,7 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 public class FinancialReport extends AppCompatActivity {
-    private static final String TAG = com.kg.bar.expense.FinancialReport.class.getSimpleName();
+    private static final String TAG = FinancialReport.class.getSimpleName();
     public static int DIALOG_ID = 1;
     public static int DIALOG_ID_2 = 2;
     Button btn_fin_report;
@@ -74,11 +75,11 @@ public class FinancialReport extends AppCompatActivity {
     EditText ed_file_location;
     EditText ed_Date1, ed_Date2;
     Calendar calendar;
-    List<com.kg.bar.expense.Expense> expList = new ArrayList<>();
-    List<com.kg.bar.expense.Finance> finList = new ArrayList<>();
-    List<com.kg.bar.expense.BankPaidDelivery> delList = new ArrayList<>();
-    List<com.kg.bar.expense.Boughts> boughtList = new ArrayList<>();
-    List<com.kg.bar.expense.VDelivery> deliveryList = new ArrayList<>();
+    List<Expense> expList = new ArrayList<>();
+    List<Finance> finList = new ArrayList<>();
+    List<BankPaidDelivery> delList = new ArrayList<>();
+    List<Boughts> boughtList = new ArrayList<>();
+    List<VDelivery> deliveryList = new ArrayList<>();
     List<Delivery> deliveryActList = new ArrayList<>();
     int year_x, month_x, day_x;
     private ProgressDialog pDialog;
@@ -138,7 +139,7 @@ public class FinancialReport extends AppCompatActivity {
         sCity.setBackgroundColor(Color.GRAY);
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(
-                com.kg.bar.expense.FinancialReport.this,
+                FinancialReport.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -479,7 +480,7 @@ public class FinancialReport extends AppCompatActivity {
                                 sheetInvoice.addCell(label);
 
                                 sheetInvoice.mergeCells(0, c + 15, 6, c + 15);
-                                label = new Label(0, c + 15, "Сумма прописью: " + com.kg.bar.expense.ExpenseHelper.number2string(total), normalCellFormat);
+                                label = new Label(0, c + 15, "Сумма прописью: " + ExpenseHelper.number2string(total), normalCellFormat);
                                 sheetInvoice.addCell(label);
 
                                 label = new Label(0, c + 17, "Руководитель: ", normalCellFormat);
@@ -687,7 +688,7 @@ public class FinancialReport extends AppCompatActivity {
                     sheetInvoice.addCell(label);
 
                     sheetInvoice.mergeCells(0, v + 4, 6, v + 4);
-                    label = new Label(0, v + 4, "Сумма прописью: " + com.kg.bar.expense.ExpenseHelper.number2string(total), normalCellFormat);
+                    label = new Label(0, v + 4, "Сумма прописью: " + ExpenseHelper.number2string(total), normalCellFormat);
                     sheetInvoice.addCell(label);
 
                     label = new Label(0, v + 6, "Руководитель: ", normalCellFormat);
@@ -840,7 +841,7 @@ public class FinancialReport extends AppCompatActivity {
                                 for (int i = 0; i < response.length(); i++) {
                                     JSONObject c = response.getJSONObject(i);
                                     // Storing each json item in variable
-                                    com.kg.bar.expense.VDelivery vd = new com.kg.bar.expense.VDelivery();
+                                    VDelivery vd = new VDelivery();
                                     vd.entrydate = c.getString("entryDate");
                                     vd.senderName = c.getString("senderName");
                                     vd.senderPhone = c.getString("senderPhone");
@@ -895,7 +896,7 @@ public class FinancialReport extends AppCompatActivity {
     }
 
 
-    private void generateGeneralExcel(List<com.kg.bar.expense.VDelivery> deliveryList) throws IOException, RowsExceededException {
+    private void generateGeneralExcel(List<VDelivery> deliveryList) throws IOException, RowsExceededException {
 
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
         Date now = new Date();
@@ -916,7 +917,7 @@ public class FinancialReport extends AppCompatActivity {
             workbook = Workbook.createWorkbook(file, wbSettings);
             WritableSheet sheet = workbook.createSheet("First Sheet", 0);
             Label label;
-            com.kg.bar.expense.VDelivery bb = new com.kg.bar.expense.VDelivery();
+            VDelivery bb = new VDelivery();
 
             try {
 
@@ -1016,7 +1017,7 @@ public class FinancialReport extends AppCompatActivity {
 
                                 for (int i = 0; i < response.length(); i++) {
                                     JSONObject c = response.getJSONObject(i);
-                                    com.kg.bar.expense.Boughts fin = new com.kg.bar.expense.Boughts();
+                                    Boughts fin = new Boughts();
                                     fin.entrydate = c.getString("entryDate");
                                     fin.origin = c.getString("senderCity");
                                     fin.destination = c.getString("receiverCity");
@@ -1066,7 +1067,7 @@ public class FinancialReport extends AppCompatActivity {
     }
 
 
-    private void generateBoughtExcel(List<com.kg.bar.expense.Boughts> buyList) throws IOException, RowsExceededException {
+    private void generateBoughtExcel(List<Boughts> buyList) throws IOException, RowsExceededException {
 
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
         Date now = new Date();
@@ -1088,7 +1089,7 @@ public class FinancialReport extends AppCompatActivity {
             WritableSheet sheet = workbook.createSheet("First Sheet", 0);
             Label label;
             Number number;
-            com.kg.bar.expense.Boughts bb = new com.kg.bar.expense.Boughts();
+            Boughts bb = new Boughts();
 
             try {
 
@@ -1191,7 +1192,7 @@ public class FinancialReport extends AppCompatActivity {
 
                                 for (int i = 0; i < response.length(); i++) {
                                     JSONObject c = response.getJSONObject(i);
-                                    com.kg.bar.expense.Finance fin = new com.kg.bar.expense.Finance();
+                                    Finance fin = new Finance();
                                     fin.entrydate = c.getString("entryDate");
                                     fin.origin = c.getString("origin");
                                     fin.destination = c.getString("destination");
@@ -1263,7 +1264,7 @@ public class FinancialReport extends AppCompatActivity {
                             if (response.length() > 0) {
                                 for (int i = 0; i < response.length(); i++) {
                                     JSONObject c = response.getJSONObject(i);
-                                    com.kg.bar.expense.BankPaidDelivery fin = new com.kg.bar.expense.BankPaidDelivery();
+                                    BankPaidDelivery fin = new BankPaidDelivery();
                                     fin.entrydate = c.getString("entryDate");
                                     fin.senderCity = c.getString("senderCity");
                                     fin.receiverCity = c.getString("receiverCity");
@@ -1337,7 +1338,7 @@ public class FinancialReport extends AppCompatActivity {
 
                                 for (int i = 0; i < response.length(); i++) {
                                     JSONObject c = response.getJSONObject(i);
-                                    com.kg.bar.expense.Expense fin = new com.kg.bar.expense.Expense();
+                                    Expense fin = new Expense();
                                     fin.exDate = c.getString("expenseDate");
                                     fin.exCity = c.getString("city");
                                     fin.exAmount = c.getString("amount");
@@ -1392,7 +1393,7 @@ public class FinancialReport extends AppCompatActivity {
     }
 
 
-    private void generateBankPaidExcel(List<com.kg.bar.expense.BankPaidDelivery> delList) throws IOException, RowsExceededException {
+    private void generateBankPaidExcel(List<BankPaidDelivery> delList) throws IOException, RowsExceededException {
 
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
         Date now = new Date();
@@ -1408,7 +1409,7 @@ public class FinancialReport extends AppCompatActivity {
         wbSettings.setLocale(new Locale("en", "EN"));
         WritableWorkbook workbook;
 
-        com.kg.bar.expense.BankPaidDelivery ff = new com.kg.bar.expense.BankPaidDelivery();
+        BankPaidDelivery ff = new BankPaidDelivery();
 
         try {
             workbook = Workbook.createWorkbook(file, wbSettings);
@@ -1483,7 +1484,7 @@ public class FinancialReport extends AppCompatActivity {
     }
 
 
-    private void expenseReportExcel(List<com.kg.bar.expense.Expense> expList) throws IOException, RowsExceededException {
+    private void expenseReportExcel(List<Expense> expList) throws IOException, RowsExceededException {
 
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
         Date now = new Date();
@@ -1499,7 +1500,7 @@ public class FinancialReport extends AppCompatActivity {
         wbSettings.setLocale(new Locale("en", "EN"));
         WritableWorkbook workbook;
 
-        com.kg.bar.expense.Expense ff = new com.kg.bar.expense.Expense();
+        Expense ff = new Expense();
 
         try {
             workbook = Workbook.createWorkbook(file, wbSettings);
@@ -1568,11 +1569,11 @@ public class FinancialReport extends AppCompatActivity {
     }
 
 
-    private boolean checkExists(List<com.kg.bar.expense.Finance> finList, String origin, String destination) throws IOException, RowsExceededException {
+    private boolean checkExists(List<Finance> finList, String origin, String destination) throws IOException, RowsExceededException {
 
         try {
             boolean exists = false;
-            com.kg.bar.expense.Finance ff;
+            Finance ff;
 
             for (int k = 0; k < finList.size(); k++) {
 
@@ -1592,7 +1593,7 @@ public class FinancialReport extends AppCompatActivity {
     }
 
 
-    private void generateExcel(List<com.kg.bar.expense.Finance> finList) throws IOException, RowsExceededException {
+    private void generateExcel(List<Finance> finList) throws IOException, RowsExceededException {
 
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
         Date now = new Date();
@@ -1608,7 +1609,7 @@ public class FinancialReport extends AppCompatActivity {
         wbSettings.setLocale(new Locale("en", "EN"));
         WritableWorkbook workbook;
 
-        com.kg.bar.expense.Finance ff = new com.kg.bar.expense.Finance();
+        Finance ff = new Finance();
 
         try {
             workbook = Workbook.createWorkbook(file, wbSettings);
@@ -1718,7 +1719,7 @@ public class FinancialReport extends AppCompatActivity {
     }
 
 
-    private void generateExcel1(List<com.kg.bar.expense.Finance> finList) throws IOException, RowsExceededException {
+    private void generateExcel1(List<Finance> finList) throws IOException, RowsExceededException {
 
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
         Date now = new Date();
@@ -1734,7 +1735,7 @@ public class FinancialReport extends AppCompatActivity {
         wbSettings.setLocale(new Locale("en", "EN"));
         WritableWorkbook workbook;
 
-        com.kg.bar.expense.Finance ff = new com.kg.bar.expense.Finance();
+        Finance ff = new Finance();
 
         try {
             workbook = Workbook.createWorkbook(file, wbSettings);

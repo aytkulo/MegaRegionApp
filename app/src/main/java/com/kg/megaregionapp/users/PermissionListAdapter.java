@@ -11,12 +11,12 @@ import android.widget.CompoundButton;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,9 +28,9 @@ import java.util.Map;
 
 class PermissionListAdapter extends BaseAdapter {
     private Context context;
-    private List<com.kg.bar.users.PermissionObject> valueList;
+    private List<PermissionObject> valueList;
 
-    PermissionListAdapter(List<com.kg.bar.users.PermissionObject> listValue, Context context) {
+    PermissionListAdapter(List<PermissionObject> listValue, Context context) {
         this.context = context;
         this.valueList = listValue;
     }

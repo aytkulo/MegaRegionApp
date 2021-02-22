@@ -18,10 +18,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.kg.bar.R;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.SMSManager;
-import com.kg.bar.helper.SQLiteHandler;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.SMSManager;
+import com.kg.megaregionapp.helper.SQLiteHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class SMSSending extends AppCompatActivity {
 
-    private static final String TAG = com.kg.bar.customer.SMSSending.class.getSimpleName();
+    private static final String TAG = SMSSending.class.getSimpleName();
     private SQLiteHandler db;
     private EditText sms_content;
     private Button btn_send_sms;

@@ -14,19 +14,19 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.SessionManager;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.SessionManager;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends Activity {
-    private static final String TAG = com.kg.bar.users.LoginActivity.class.getSimpleName();
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     private EditText inputEmail;
     private EditText inputPassword;
@@ -127,8 +127,8 @@ public class LoginActivity extends Activity {
 
     private void checkLogin(final String email, final String password) {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.users.LoginActivity.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.LoginActivity.this,
+        if (!NetworkUtil.isNetworkConnected(LoginActivity.this)) {
+            MyDialog.createSimpleOkErrorDialog(LoginActivity.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else {  // Tag used to cancel the request
@@ -172,14 +172,14 @@ public class LoginActivity extends Activity {
                                     finish();
 
                             } catch (JSONException e) {
-                                Toast.makeText(com.kg.bar.users.LoginActivity.this,  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this,  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
                             }
                         }
                     }, new Response.ErrorListener() {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(com.kg.bar.users.LoginActivity.this, "Неверны учетные данные!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Неверны учетные данные!", Toast.LENGTH_LONG).show();
                     hideDialog();
                 }
             }) {

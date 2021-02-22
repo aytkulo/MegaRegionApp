@@ -18,12 +18,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.HelperConstants;
-import com.kg.bar.helper.PostHelper;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.HelperConstants;
+import com.kg.megaregionapp.helper.PostHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,15 +39,15 @@ import java.util.Map;
 
 public class TransactionOperation extends AppCompatActivity {
 
-    private static final String TAG = com.kg.bar.expense.ExpenseHelper.class.getSimpleName();
+    private static final String TAG = ExpenseHelper.class.getSimpleName();
     public static int DIALOG_ID = 0;
     private EditText exp_Amount, exp_Date, exp_Id;
     private Button btn_expSave;
     private ProgressDialog pDialog;
-    private List<com.kg.bar.expense.Expense> expenseList = new ArrayList<>();
+    private List<Expense> expenseList = new ArrayList<>();
     private int year_x, month_x, day_x;
     private Calendar calendar;
-    private com.kg.bar.expense.Expense expenseData;
+    private Expense expenseData;
     private Spinner spn_postmans;
     String operationType;
 
@@ -75,7 +75,7 @@ public class TransactionOperation extends AppCompatActivity {
         day_x = calendar.get(Calendar.DAY_OF_MONTH);
 
         try {
-            PostHelper.listPostmans(HomeActivity.userCity, com.kg.bar.expense.TransactionOperation.this, spn_postmans);
+            PostHelper.listPostmans(HomeActivity.userCity, TransactionOperation.this, spn_postmans);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -85,11 +85,11 @@ public class TransactionOperation extends AppCompatActivity {
 
         if (extras != null) {
 
-            expenseData = (com.kg.bar.expense.Expense) espenseIntent.getSerializableExtra("expense");
+            expenseData = (Expense) espenseIntent.getSerializableExtra("expense");
             operationType = extras.getString(HelperConstants.EXPENSE_OPERATION);
 
             if (operationType.equalsIgnoreCase(HelperConstants.EXPENSE_UPDATE)) {
-                expenseData = (com.kg.bar.expense.Expense) espenseIntent.getSerializableExtra("expense");
+                expenseData = (Expense) espenseIntent.getSerializableExtra("expense");
                 exp_Amount.setText(expenseData.exAmount);
                 exp_Date.setText(expenseData.exDate);
                 exp_Id.setText(expenseData.exId);

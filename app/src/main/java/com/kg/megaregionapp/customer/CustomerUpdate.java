@@ -10,16 +10,16 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kg.bar.R;
-import com.kg.bar.helper.HelperConstants;
-import com.kg.bar.helper.SessionManager;
-import com.kg.bar.helper.StringData;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.helper.HelperConstants;
+import com.kg.megaregionapp.helper.SessionManager;
+import com.kg.megaregionapp.helper.StringData;
 
 import org.json.JSONException;
 
 public class CustomerUpdate extends AppCompatActivity {
 
-    private com.kg.bar.customer.Customer customer;
+    private Customer customer;
     private EditText cAddress, cName, cPhone, cCompany, cId;
     private Button btnSave;
     private Button btnDelete;
@@ -44,7 +44,7 @@ public class CustomerUpdate extends AppCompatActivity {
 
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(
-                com.kg.bar.customer.CustomerUpdate.this,
+                CustomerUpdate.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -62,7 +62,7 @@ public class CustomerUpdate extends AppCompatActivity {
             operationType = extras.getString(HelperConstants.CUSTOMER_OPERATION);
 
             if (operationType.equalsIgnoreCase(HelperConstants.UPDATE_CORP_CUSTOMER)) {
-                customer = (com.kg.bar.customer.Customer) orderIntent.getSerializableExtra("customer");
+                customer = (Customer) orderIntent.getSerializableExtra("customer");
                 cId.setText(customer.cus_id);
                 cAddress.setText(customer.cus_Address);
                 cPhone.setText(customer.cus_Phone);
@@ -70,7 +70,7 @@ public class CustomerUpdate extends AppCompatActivity {
                 cCity.setSelection(getIndex(cCity, customer.cus_City));
                 cName.setEnabled(false);
             } else if (operationType.equalsIgnoreCase(HelperConstants.UPDATE_NORM_CUSTOMER)) {
-                customer = (com.kg.bar.customer.Customer) orderIntent.getSerializableExtra("customer");
+                customer = (Customer) orderIntent.getSerializableExtra("customer");
                 cId.setText(customer.cus_id);
                 cAddress.setText(customer.cus_Address);
                 cPhone.setText(customer.cus_Phone);
@@ -89,19 +89,19 @@ public class CustomerUpdate extends AppCompatActivity {
 
                     if (operationType.equalsIgnoreCase(HelperConstants.UPDATE_CORP_CUSTOMER) && cId.getText().toString().length() > 0) {
 
-                        com.kg.bar.customer.CustomerHelper.updateCorporateCustomer(cPhone.getText().toString(), cCompany.getText().toString(),
+                        CustomerHelper.updateCorporateCustomer(cPhone.getText().toString(), cCompany.getText().toString(),
                                 cCity.getSelectedItem().toString(), cAddress.getText().toString(), cId.getText().toString(), token);
 
                     } else if (operationType.equalsIgnoreCase(HelperConstants.UPDATE_NORM_CUSTOMER) && cId.getText().toString().length() > 0) {
                         {
-                            com.kg.bar.customer.CustomerHelper.updateCustomer(cName.getText().toString(), cPhone.getText().toString(), cCompany.getText().toString(),
+                            CustomerHelper.updateCustomer(cName.getText().toString(), cPhone.getText().toString(), cCompany.getText().toString(),
                                     cCity.getSelectedItem().toString(), cAddress.getText().toString(), cId.getText().toString(), token);
                         }
                     } else if (operationType.equalsIgnoreCase(HelperConstants.NEW_CORP_CUSTOMER)) {
-                        com.kg.bar.customer.CustomerHelper.saveCorporateCustomer(cPhone.getText().toString(), cCompany.getText().toString(),
+                        CustomerHelper.saveCorporateCustomer(cPhone.getText().toString(), cCompany.getText().toString(),
                                 cCity.getSelectedItem().toString(), cAddress.getText().toString(), token);
                     } else
-                        com.kg.bar.customer.CustomerHelper.saveCustomer(cName.getText().toString(), cPhone.getText().toString(), cCompany.getText().toString(),
+                        CustomerHelper.saveCustomer(cName.getText().toString(), cPhone.getText().toString(), cCompany.getText().toString(),
                                 cCity.getSelectedItem().toString(), cAddress.getText().toString(), token);
 
                 } catch (JSONException e) {
@@ -118,7 +118,7 @@ public class CustomerUpdate extends AppCompatActivity {
             public void onClick(View v) {
                 if (cId.getText().toString().length() > 0) {
                     try {
-                        com.kg.bar.customer.CustomerHelper.deleteCustomer(cId.getText().toString(), token);
+                        CustomerHelper.deleteCustomer(cId.getText().toString(), token);
                         Intent intent = new Intent();
                         setResult(RESULT_OK, intent);
                         finish();

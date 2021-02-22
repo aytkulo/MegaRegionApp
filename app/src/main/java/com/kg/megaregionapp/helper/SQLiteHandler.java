@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class SQLiteHandler extends SQLiteOpenHelper {
 
-    private static final String TAG = com.kg.bar.helper.SQLiteHandler.class.getSimpleName();
+    private static final String TAG = SQLiteHandler.class.getSimpleName();
 
     // All Static variables
     // Database Version

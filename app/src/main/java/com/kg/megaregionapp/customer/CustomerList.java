@@ -21,13 +21,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.helper.HelperConstants;
-import com.kg.bar.helper.StringData;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.helper.HelperConstants;
+import com.kg.megaregionapp.helper.StringData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CustomerList extends AppCompatActivity {
-    private static final String TAG = com.kg.bar.customer.CustomerList.class.getSimpleName();
+    private static final String TAG = CustomerList.class.getSimpleName();
     private ListView listViewCustomers;
     private List<Customer> customerList = new ArrayList<>();
     private Customer customer;
@@ -67,7 +67,7 @@ public class CustomerList extends AppCompatActivity {
 
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(
-                com.kg.bar.customer.CustomerList.this,
+                CustomerList.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -78,7 +78,7 @@ public class CustomerList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 customer = (Customer) parent.getItemAtPosition(position);
-                Intent intentDelivery = new Intent(com.kg.bar.customer.CustomerList.this, CustomerUpdate.class);
+                Intent intentDelivery = new Intent(CustomerList.this, CustomerUpdate.class);
                 intentDelivery.putExtra(HelperConstants.CUSTOMER_OPERATION, HelperConstants.UPDATE_NORM_CUSTOMER);
                 intentDelivery.putExtra("customer", customer);
                 startActivityForResult(intentDelivery, 1);
@@ -152,7 +152,7 @@ public class CustomerList extends AppCompatActivity {
                                 }
                                 // update the adapater
                                 if (customerList.size() > 0) {
-                                    com.kg.bar.customer.CustomerListAdapter custListAdapter = new com.kg.bar.customer.CustomerListAdapter(customerList, com.kg.bar.customer.CustomerList.this);
+                                    CustomerListAdapter custListAdapter = new CustomerListAdapter(customerList, CustomerList.this);
                                     listViewCustomers.setAdapter(custListAdapter);
                                 }
                             } else {
@@ -224,7 +224,7 @@ public class CustomerList extends AppCompatActivity {
                         }
                         // update the adapater
                         if (customerList.size() > 0) {
-                            com.kg.bar.customer.CustomerListAdapter custListAdapter = new com.kg.bar.customer.CustomerListAdapter(customerList, com.kg.bar.customer.CustomerList.this);
+                            CustomerListAdapter custListAdapter = new CustomerListAdapter(customerList, CustomerList.this);
                             listViewCustomers.setAdapter(custListAdapter);
                         }
                     } else {

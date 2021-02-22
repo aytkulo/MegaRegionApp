@@ -23,17 +23,17 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.delivery.DeliveryEntry;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.helper.PostHelper;
-import com.kg.bar.helper.StringData;
-import com.kg.bar.users.LoginActivity;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.delivery.DeliveryEntry;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.helper.PostHelper;
+import com.kg.megaregionapp.helper.StringData;
+import com.kg.megaregionapp.users.LoginActivity;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,7 +55,7 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
     public static int DIALOG_ID1 = 0;
     public static int DIALOG_ID2 = 0;
     ListView listViewOrders;
-    com.kg.bar.orders.Orders order;
+    Orders order;
     private EditText ed_Date1, ed_Date2, phone;
     private Button btn_List;
     private Spinner sp_Origin;
@@ -68,7 +68,7 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
     public static final int DELIVERY_ENTRY_ACTIVITY = 1;
     private ProgressDialog pDialog;
 
-    private List<com.kg.bar.orders.Orders> orderList = new ArrayList<>();
+    private List<Orders> orderList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
         String userCity = HomeActivity.userCity;
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(
-                com.kg.bar.orders.OrderListAssigned.this,
+                OrderListAssigned.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -133,7 +133,7 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
                 String senderCity = sp_Origin.getSelectedItem().toString();
 
                 try {
-                    PostHelper.listSectors(senderCity, com.kg.bar.orders.OrderListAssigned.this, sp_Sector);
+                    PostHelper.listSectors(senderCity, OrderListAssigned.this, sp_Sector);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -163,8 +163,8 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                order = (com.kg.bar.orders.Orders) parent.getItemAtPosition(position);
-                Intent intentDelivery = new Intent(com.kg.bar.orders.OrderListAssigned.this, DeliveryEntry.class);
+                order = (Orders) parent.getItemAtPosition(position);
+                Intent intentDelivery = new Intent(OrderListAssigned.this, DeliveryEntry.class);
                 intentDelivery.putExtra("order", order);
                 startActivityForResult(intentDelivery, DELIVERY_ENTRY_ACTIVITY);
             }
@@ -261,12 +261,12 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
 
     public void listOrders(final String entryDate1, final String entryDate2, final String responsible, final String origin, final String phone) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.orders.OrderListAssigned.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderListAssigned.this,
+        if (!NetworkUtil.isNetworkConnected(OrderListAssigned.this)) {
+            MyDialog.createSimpleOkErrorDialog(OrderListAssigned.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderListAssigned.this,
+            MyDialog.createSimpleOkErrorDialog(OrderListAssigned.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -298,7 +298,7 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
 
                                     for (int i = 0; i < response.length(); i++) {
                                         JSONObject c = response.getJSONObject(i);
-                                        com.kg.bar.orders.Orders o = new com.kg.bar.orders.Orders();
+                                        Orders o = new Orders();
                                         // Storing each json item in variable
 
                                         o.Name = c.getString("senderPhone") + " - " + c.getString("senderName") + " - " + c.getString("senderCompany");
@@ -328,21 +328,21 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
                                     }
 
                                     if (orderList.size() > 0) {
-                                        com.kg.bar.orders.OrderListAdapter orderListAdapter = new com.kg.bar.orders.OrderListAdapter(orderList, com.kg.bar.orders.OrderListAssigned.this);
+                                        OrderListAdapter orderListAdapter = new OrderListAdapter(orderList, OrderListAssigned.this);
                                         listViewOrders.setAdapter(orderListAdapter);
                                     }
 
                                 } else {
-                                    Toast.makeText(com.kg.bar.orders.OrderListAssigned.this,  getApplicationContext().getString(R.string.NoData), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(OrderListAssigned.this,  getApplicationContext().getString(R.string.NoData), Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
-                                Toast.makeText(com.kg.bar.orders.OrderListAssigned.this,  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
+                                Toast.makeText(OrderListAssigned.this,  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
                             }
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    NetworkUtil.checkHttpStatus(com.kg.bar.orders.OrderListAssigned.this, error);
+                    NetworkUtil.checkHttpStatus(OrderListAssigned.this, error);
                     hideDialog();
                 }
             }) {
@@ -388,7 +388,7 @@ public class OrderListAssigned extends AppCompatActivity implements SwipeRefresh
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof AuthFailureError) {
                     Toast.makeText(getApplicationContext(), "Бул операция үчүн уруксатыңыз жок!", Toast.LENGTH_LONG).show();
-                    Intent loginIntent = new Intent(com.kg.bar.orders.OrderListAssigned.this, LoginActivity.class);
+                    Intent loginIntent = new Intent(OrderListAssigned.this, LoginActivity.class);
                     startActivity(loginIntent);
                 } else {
                     Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();

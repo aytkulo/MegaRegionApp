@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.kg.bar.R;
+import com.kg.megaregionapp.R;
 
 import java.util.List;
 
@@ -42,9 +42,9 @@ class CustomerListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        com.kg.bar.customer.CustomerViewItem viewItem;
+        CustomerViewItem viewItem;
         if (convertView == null) {
-            viewItem = new com.kg.bar.customer.CustomerViewItem();
+            viewItem = new CustomerViewItem();
             LayoutInflater layoutInfiater = (LayoutInflater) this.context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             //LayoutInflater layoutInfiater = LayoutInflater.from(context);
             convertView = layoutInfiater.inflate(R.layout.template_customer_list, null);
@@ -62,7 +62,7 @@ class CustomerListAdapter extends BaseAdapter {
 
             convertView.setTag(viewItem);
         } else {
-            viewItem = (com.kg.bar.customer.CustomerViewItem) convertView.getTag();
+            viewItem = (CustomerViewItem) convertView.getTag();
         }
 
 

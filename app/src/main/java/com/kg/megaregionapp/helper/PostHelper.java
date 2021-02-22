@@ -8,14 +8,14 @@ import com.android.volley.Request;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.orders.Sector;
-import com.kg.bar.users.User;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.orders.Sector;
+import com.kg.megaregionapp.users.User;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,7 +50,7 @@ public class PostHelper {
                 e.printStackTrace();
             }
 
-            com.kg.bar.helper.CustomJsonArrayRequest req = new com.kg.bar.helper.CustomJsonArrayRequest(Request.Method.POST, AppConfig.URL_GET_USERS, jsonObject,
+            CustomJsonArrayRequest req = new CustomJsonArrayRequest(Request.Method.POST, AppConfig.URL_GET_USERS, jsonObject,
                     response -> {
 
                         try {
@@ -119,7 +119,7 @@ public class PostHelper {
                 e.printStackTrace();
             }
 
-            com.kg.bar.helper.CustomJsonArrayRequest req = new com.kg.bar.helper.CustomJsonArrayRequest(Request.Method.POST, AppConfig.URL_GET_SECTORS, jsonObject,
+            CustomJsonArrayRequest req = new CustomJsonArrayRequest(Request.Method.POST, AppConfig.URL_GET_SECTORS, jsonObject,
                     response -> {
 
                         try {

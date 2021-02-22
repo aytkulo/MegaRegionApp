@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.kg.bar.R;
+import com.kg.megaregionapp.R;
 
 import java.util.List;
 

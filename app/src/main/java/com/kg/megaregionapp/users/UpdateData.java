@@ -11,13 +11,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.SessionManager;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.SessionManager;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UpdateData extends AppCompatActivity {
-    private static final String TAG = com.kg.bar.users.UpdateData.class.getSimpleName();
+    private static final String TAG = UpdateData.class.getSimpleName();
 
     private Button btn_update;
     private EditText txt_username;
@@ -72,7 +72,7 @@ public class UpdateData extends AppCompatActivity {
                 if (!old_password.isEmpty() && !username.isEmpty() && !new_password.isEmpty()) {
                     try {
                         updatePassword(old_password, username, new_password, fullName);
-                        Intent intent = new Intent(com.kg.bar.users.UpdateData.this, HomeActivity.class);
+                        Intent intent = new Intent(UpdateData.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
                     } catch (ParseException e) {
@@ -98,12 +98,12 @@ public class UpdateData extends AppCompatActivity {
     private void updatePassword(final String old_password, final String username,
                                 final String new_password, final String fullname) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.users.UpdateData.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.UpdateData.this,
+        if (!NetworkUtil.isNetworkConnected(UpdateData.this)) {
+            MyDialog.createSimpleOkErrorDialog(UpdateData.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.UpdateData.this,
+            MyDialog.createSimpleOkErrorDialog(UpdateData.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -131,13 +131,13 @@ public class UpdateData extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Пароль өзгөтүлдү!", Toast.LENGTH_LONG).show();
                                 logoutUser();
                             } else {
-                                Toast.makeText(com.kg.bar.users.UpdateData.this,  getApplicationContext().getString(R.string.NoData), Toast.LENGTH_LONG).show();
+                                Toast.makeText(UpdateData.this,  getApplicationContext().getString(R.string.NoData), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
-                            Toast.makeText(com.kg.bar.users.UpdateData.this,  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
+                            Toast.makeText(UpdateData.this,  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
                         }
                     }, error -> {
-                        NetworkUtil.checkHttpStatus(com.kg.bar.users.UpdateData.this, error);
+                        NetworkUtil.checkHttpStatus(UpdateData.this, error);
                         hideDialog();
                     }) {
 

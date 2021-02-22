@@ -19,14 +19,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.HelperConstants;
-import com.kg.bar.helper.StringData;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.HelperConstants;
+import com.kg.megaregionapp.helper.StringData;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,14 +42,14 @@ import java.util.Map;
 
 public class ExpenseOperation extends AppCompatActivity {
 
-    private static final String TAG = com.kg.bar.expense.ExpenseHelper.class.getSimpleName();
+    private static final String TAG = ExpenseHelper.class.getSimpleName();
     public static int DIALOG_ID = 0;
     private EditText exp_Expl, exp_Amount, exp_Date, exp_Id;
     private Button btn_expSave;
     private Spinner spn_exp_City;
     private ListView listViewExpenses;
     private ProgressDialog pDialog;
-    private List<com.kg.bar.expense.Expense> expenseList = new ArrayList<>();
+    private List<Expense> expenseList = new ArrayList<>();
     private int year_x, month_x, day_x;
     private Calendar calendar;
     String operationType;
@@ -83,7 +83,7 @@ public class ExpenseOperation extends AppCompatActivity {
 
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(
-                com.kg.bar.expense.ExpenseOperation.this,
+                ExpenseOperation.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -99,7 +99,7 @@ public class ExpenseOperation extends AppCompatActivity {
 
             operationType = extras.getString(HelperConstants.EXPENSE_OPERATION);
             if (operationType.equalsIgnoreCase(HelperConstants.EXPENSE_UPDATE)) {
-                com.kg.bar.expense.Expense expenseData = (com.kg.bar.expense.Expense) espenseIntent.getSerializableExtra("expense");
+                Expense expenseData = (Expense) espenseIntent.getSerializableExtra("expense");
                 exp_Amount.setText(expenseData.exAmount);
                 exp_Expl.setText(expenseData.exExplanation);
                 exp_Date.setText(expenseData.exDate);
@@ -178,12 +178,12 @@ public class ExpenseOperation extends AppCompatActivity {
 
     public void saveExpense(final String city, final String amount, final String user, final String expenseDate, final String explanation) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.expense.ExpenseOperation.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.ExpenseOperation.this,
+        if (!NetworkUtil.isNetworkConnected(ExpenseOperation.this)) {
+            MyDialog.createSimpleOkErrorDialog(ExpenseOperation.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.ExpenseOperation.this,
+            MyDialog.createSimpleOkErrorDialog(ExpenseOperation.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {// Tag used to cancel the request
@@ -208,7 +208,7 @@ public class ExpenseOperation extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    NetworkUtil.checkHttpStatus(com.kg.bar.expense.ExpenseOperation.this, error);
+                    NetworkUtil.checkHttpStatus(ExpenseOperation.this, error);
                     hideDialog();
                 }
             }) {
@@ -227,12 +227,12 @@ public class ExpenseOperation extends AppCompatActivity {
 
     public void updateExpense(final String city, final String amount, final String expenseDate, final String explanation, final String id) throws ParseException {
 
-            if (!NetworkUtil.isNetworkConnected(com.kg.bar.expense.ExpenseOperation.this)) {
-                MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.ExpenseOperation.this,
+            if (!NetworkUtil.isNetworkConnected(ExpenseOperation.this)) {
+                MyDialog.createSimpleOkErrorDialog(ExpenseOperation.this,
                         getApplicationContext().getString(R.string.dialog_error_title),
                         getApplicationContext().getString(R.string.check_internet)).show();
             } else if (NetworkUtil.isTokenExpired()) {
-                MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.ExpenseOperation.this,
+                MyDialog.createSimpleOkErrorDialog(ExpenseOperation.this,
                         getApplicationContext().getString(R.string.dialog_error_title),
                         getApplicationContext().getString(R.string.relogin)).show();
             } else {

@@ -22,14 +22,14 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.SQLiteHandler;
-import com.kg.bar.helper.StringData;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.SQLiteHandler;
+import com.kg.megaregionapp.helper.StringData;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +40,7 @@ import java.util.Map;
 
 
 public class RegisterActivity extends Activity {
-    private static final String TAG = com.kg.bar.users.RegisterActivity.class.getSimpleName();
+    private static final String TAG = RegisterActivity.class.getSimpleName();
     private Button btnRegister;
     private EditText inputFullName;
     private EditText inputEmail;
@@ -63,7 +63,7 @@ public class RegisterActivity extends Activity {
         inputRole = findViewById(R.id.spinner_role);
 
         ArrayAdapter<String> cityAdapterAll = new ArrayAdapter<String>(
-                com.kg.bar.users.RegisterActivity.this,
+                RegisterActivity.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -105,8 +105,8 @@ public class RegisterActivity extends Activity {
     private void registerUser(final String name, final String email,
                               final String password, final String city, final String role) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.users.RegisterActivity.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.RegisterActivity.this,
+        if (!NetworkUtil.isNetworkConnected(RegisterActivity.this)) {
+            MyDialog.createSimpleOkErrorDialog(RegisterActivity.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else {
@@ -139,16 +139,16 @@ public class RegisterActivity extends Activity {
                                 if (response.getString("userId").length() > 0) {
 
                                     Toast.makeText(getApplicationContext(), "Колдонуучу ийгиликтүү катталды!", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(com.kg.bar.users.RegisterActivity.this, HomeActivity.class);
+                                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.RegisterActivity.this,
+                                    MyDialog.createSimpleOkErrorDialog(RegisterActivity.this,
                                             getApplicationContext().getString(R.string.dialog_error_title),
                                             getApplicationContext().getString(R.string.NoData)).show();
                                 }
                             } catch (JSONException e) {
-                                MyDialog.createSimpleOkErrorDialog(com.kg.bar.users.RegisterActivity.this,
+                                MyDialog.createSimpleOkErrorDialog(RegisterActivity.this,
                                         getApplicationContext().getString(R.string.dialog_error_title),
                                         getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                             }
@@ -161,7 +161,7 @@ public class RegisterActivity extends Activity {
                         if (error.networkResponse.headers.containsKey("X-Android-Response-Source")) {
                             String value = error.networkResponse.headers.get("X-Android-Response-Source");
                             if (value.equalsIgnoreCase("NETWORK 409")) {
-                                new AlertDialog.Builder(com.kg.bar.users.RegisterActivity.this)
+                                new AlertDialog.Builder(RegisterActivity.this)
                                         .setTitle(getApplicationContext().getResources().getString(R.string.Attention))
                                         .setMessage(getApplicationContext().getResources().getString(R.string.RecordAlreadyExists))
                                         .setPositiveButton(getApplicationContext().getResources().getString(R.string.OK), new DialogInterface.OnClickListener() {

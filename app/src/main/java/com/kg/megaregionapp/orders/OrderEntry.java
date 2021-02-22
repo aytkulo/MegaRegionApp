@@ -24,16 +24,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.customer.CustomerHelper;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.helper.PostHelper;
-import com.kg.bar.helper.StringData;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.customer.CustomerHelper;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.helper.PostHelper;
+import com.kg.megaregionapp.helper.StringData;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +46,7 @@ import java.util.Map;
 public class OrderEntry extends AppCompatActivity {
 
     private ArrayList<String> usersList = new ArrayList<>();
-    private static final String TAG = com.kg.bar.orders.OrderEntry.class.getSimpleName();
+    private static final String TAG = OrderEntry.class.getSimpleName();
     private ProgressDialog pDialog;
     Spinner spinner_users;
     Spinner spinner_senderCity;
@@ -106,7 +106,7 @@ public class OrderEntry extends AppCompatActivity {
 
 
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<String>(
-                com.kg.bar.orders.OrderEntry.this,
+                OrderEntry.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -335,7 +335,7 @@ public class OrderEntry extends AppCompatActivity {
                 String senderCity = spinner_senderCity.getSelectedItem().toString();
 
                 try {
-                    PostHelper.listSectors(senderCity, com.kg.bar.orders.OrderEntry.this, spinner_users);
+                    PostHelper.listSectors(senderCity, OrderEntry.this, spinner_users);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -365,12 +365,12 @@ public class OrderEntry extends AppCompatActivity {
                           final String rName, final String rPhone, final String rComp, final String rCity, final String rAddress,
                           final String sector, final String explanation) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.orders.OrderEntry.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+        if (!NetworkUtil.isNetworkConnected(OrderEntry.this)) {
+            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -404,16 +404,16 @@ public class OrderEntry extends AppCompatActivity {
                     response -> {
                         hideDialog();
                         if (response != null) {
-                            Intent intent = new Intent(com.kg.bar.orders.OrderEntry.this, HomeActivity.class);
+                            Intent intent = new Intent(OrderEntry.this, HomeActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+                            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                                     getApplicationContext().getString(R.string.dialog_error_title),
                                     getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                         }
                     }, error -> {
-                        NetworkUtil.checkHttpStatus(com.kg.bar.orders.OrderEntry.this, error);
+                        NetworkUtil.checkHttpStatus(OrderEntry.this, error);
                         hideDialog();
                     }) {
                 @Override
@@ -442,12 +442,12 @@ public class OrderEntry extends AppCompatActivity {
 
     public void getSenderCustomers(final String phone, final String company) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.orders.OrderEntry.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+        if (!NetworkUtil.isNetworkConnected(OrderEntry.this)) {
+            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -475,21 +475,21 @@ public class OrderEntry extends AppCompatActivity {
                                     custs[i] = c.getString("phone") + "__" + c.getString("responsiblePerson") + "__" + c.getString("address") + "__" + c.getString("city") + "__" + c.getString("company");
                                 }
                                 // update the adapater
-                                myAdapterS = new ArrayAdapter<String>(com.kg.bar.orders.OrderEntry.this, android.R.layout.simple_dropdown_item_1line, custs);
-                                myAdapterSC = new ArrayAdapter<String>(com.kg.bar.orders.OrderEntry.this, android.R.layout.simple_dropdown_item_1line, custs);
+                                myAdapterS = new ArrayAdapter<String>(OrderEntry.this, android.R.layout.simple_dropdown_item_1line, custs);
+                                myAdapterSC = new ArrayAdapter<String>(OrderEntry.this, android.R.layout.simple_dropdown_item_1line, custs);
                                 senderPhone.setAdapter(myAdapterS);
                                 senderCompany.setAdapter(myAdapterSC);
                                 myAdapterS.notifyDataSetChanged();
                                 myAdapterSC.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
-                            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+                            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                                     getApplicationContext().getString(R.string.dialog_error_title),
                                     getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                         }
 
                     }, error -> {
-                        NetworkUtil.checkHttpStatus(com.kg.bar.orders.OrderEntry.this, error);
+                        NetworkUtil.checkHttpStatus(OrderEntry.this, error);
                         hideDialog();
                     }) {
 
@@ -508,12 +508,12 @@ public class OrderEntry extends AppCompatActivity {
 
     public void getReceiverCustomers(final String phone, final String company) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.orders.OrderEntry.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+        if (!NetworkUtil.isNetworkConnected(OrderEntry.this)) {
+            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -541,20 +541,20 @@ public class OrderEntry extends AppCompatActivity {
                                     custs[i] = c.getString("phone") + "__" + c.getString("responsiblePerson") + "__" + c.getString("address") + "__" + c.getString("city") + "__" + c.getString("company");
                                 }
                                 // update the adapater
-                                myAdapterR = new ArrayAdapter<String>(com.kg.bar.orders.OrderEntry.this, android.R.layout.simple_dropdown_item_1line, custs);
+                                myAdapterR = new ArrayAdapter<String>(OrderEntry.this, android.R.layout.simple_dropdown_item_1line, custs);
                                 receiverPhone.setAdapter(myAdapterR);
                                 myAdapterR.notifyDataSetChanged();
-                                myAdapterRC = new ArrayAdapter<String>(com.kg.bar.orders.OrderEntry.this, android.R.layout.simple_dropdown_item_1line, custs);
+                                myAdapterRC = new ArrayAdapter<String>(OrderEntry.this, android.R.layout.simple_dropdown_item_1line, custs);
                                 receiverCompany.setAdapter(myAdapterRC);
                                 myAdapterRC.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
-                            MyDialog.createSimpleOkErrorDialog(com.kg.bar.orders.OrderEntry.this,
+                            MyDialog.createSimpleOkErrorDialog(OrderEntry.this,
                                     getApplicationContext().getString(R.string.dialog_error_title),
                                     getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                         }
                     }, error -> {
-                        NetworkUtil.checkHttpStatus(com.kg.bar.orders.OrderEntry.this, error);
+                        NetworkUtil.checkHttpStatus(OrderEntry.this, error);
                         hideDialog();
                     }) {
 

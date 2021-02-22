@@ -19,16 +19,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.kg.bar.HomeActivity;
-import com.kg.bar.R;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
-import com.kg.bar.helper.CustomJsonArrayRequest;
-import com.kg.bar.helper.HelperConstants;
-import com.kg.bar.helper.SQLiteHandler;
-import com.kg.bar.helper.StringData;
-import com.kg.bar.utils.MyDialog;
-import com.kg.bar.utils.NetworkUtil;
+import com.kg.megaregionapp.HomeActivity;
+import com.kg.megaregionapp.R;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
+import com.kg.megaregionapp.helper.CustomJsonArrayRequest;
+import com.kg.megaregionapp.helper.HelperConstants;
+import com.kg.megaregionapp.helper.SQLiteHandler;
+import com.kg.megaregionapp.helper.StringData;
+import com.kg.megaregionapp.utils.MyDialog;
+import com.kg.megaregionapp.utils.NetworkUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +46,7 @@ import java.util.Map;
 public class ExpenseList extends AppCompatActivity {
 
 
-    private static final String TAG = com.kg.bar.expense.ExpenseList.class.getSimpleName();
+    private static final String TAG = ExpenseList.class.getSimpleName();
     private ProgressDialog pDialog;
     public static int DIALOG_ID1 = 1;
     public static int DIALOG_ID2 = 2;
@@ -60,7 +60,7 @@ public class ExpenseList extends AppCompatActivity {
     private String senderCity = "";
 
     private SQLiteHandler db;
-    private List<com.kg.bar.expense.Expense> expenseList = new ArrayList<>();
+    private List<Expense> expenseList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class ExpenseList extends AppCompatActivity {
 
 
         ArrayAdapter<String> cityAdapterAll = new ArrayAdapter<String>(
-                com.kg.bar.expense.ExpenseList.this,
+                ExpenseList.this,
                 android.R.layout.simple_spinner_dropdown_item,
                 StringData.getCityList()
         );
@@ -130,7 +130,7 @@ public class ExpenseList extends AppCompatActivity {
         btn_newE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentE = new Intent(com.kg.bar.expense.ExpenseList.this, ExpenseOperation.class);
+                Intent intentE = new Intent(ExpenseList.this, ExpenseOperation.class);
                 intentE.putExtra(HelperConstants.EXPENSE_OPERATION, HelperConstants.EXPENSE_NEW);
                 startActivity(intentE);
             }
@@ -154,8 +154,8 @@ public class ExpenseList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                com.kg.bar.expense.Expense expense = (com.kg.bar.expense.Expense) parent.getItemAtPosition(position);
-                Intent intentE = new Intent(com.kg.bar.expense.ExpenseList.this, ExpenseOperation.class);
+                Expense expense = (Expense) parent.getItemAtPosition(position);
+                Intent intentE = new Intent(ExpenseList.this, ExpenseOperation.class);
                 intentE.putExtra("expense", expense);
                 intentE.putExtra(HelperConstants.EXPENSE_OPERATION, HelperConstants.EXPENSE_UPDATE);
                 startActivity(intentE);
@@ -165,12 +165,12 @@ public class ExpenseList extends AppCompatActivity {
 
     public void listExpenses(final String date1, final String date2, final String city) throws ParseException {
 
-        if (!NetworkUtil.isNetworkConnected(com.kg.bar.expense.ExpenseList.this)) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.ExpenseList.this,
+        if (!NetworkUtil.isNetworkConnected(ExpenseList.this)) {
+            MyDialog.createSimpleOkErrorDialog(ExpenseList.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.check_internet)).show();
         } else if (NetworkUtil.isTokenExpired()) {
-            MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.ExpenseList.this,
+            MyDialog.createSimpleOkErrorDialog(ExpenseList.this,
                     getApplicationContext().getString(R.string.dialog_error_title),
                     getApplicationContext().getString(R.string.relogin)).show();
         } else {
@@ -202,7 +202,7 @@ public class ExpenseList extends AppCompatActivity {
                                     double totalAmount = 0;
                                     for (int i = 0; i < response.length(); i++) {
                                         JSONObject c = response.getJSONObject(i);
-                                        com.kg.bar.expense.Expense ex = new com.kg.bar.expense.Expense();
+                                        Expense ex = new Expense();
                                         ex.exCity = c.getString("city");
                                         ex.exAmount = c.getString("amount");
                                         ex.exDate = c.getString("expenseDate").substring(0, 10);
@@ -213,17 +213,17 @@ public class ExpenseList extends AppCompatActivity {
                                         totalAmount = totalAmount + Double.parseDouble(ex.exAmount);
                                     }
                                     if (expenseList.size() > 0) {
-                                        ExpenseListAdapter expenseListAdapter = new ExpenseListAdapter(expenseList, com.kg.bar.expense.ExpenseList.this);
+                                        ExpenseListAdapter expenseListAdapter = new ExpenseListAdapter(expenseList, ExpenseList.this);
                                         listViewExpenses.setAdapter(expenseListAdapter);
                                         ed_total.setText("" + totalAmount);
                                     }
                                 } else {
-                                    MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.ExpenseList.this,
+                                    MyDialog.createSimpleOkErrorDialog(ExpenseList.this,
                                             getApplicationContext().getString(R.string.dialog_error_title),
                                             getApplicationContext().getString(R.string.NoData)).show();
                                 }
                             } catch (JSONException e) {
-                                MyDialog.createSimpleOkErrorDialog(com.kg.bar.expense.ExpenseList.this,
+                                MyDialog.createSimpleOkErrorDialog(ExpenseList.this,
                                         getApplicationContext().getString(R.string.dialog_error_title),
                                         getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                             }
@@ -233,7 +233,7 @@ public class ExpenseList extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     hideDialog();
-                    NetworkUtil.checkHttpStatus(com.kg.bar.expense.ExpenseList.this, error);
+                    NetworkUtil.checkHttpStatus(ExpenseList.this, error);
                 }
             }) {
                 @Override

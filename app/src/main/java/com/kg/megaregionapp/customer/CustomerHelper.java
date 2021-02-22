@@ -5,8 +5,8 @@ import android.util.Log;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.kg.bar.app.AppConfig;
-import com.kg.bar.app.AppController;
+import com.kg.megaregionapp.app.AppConfig;
+import com.kg.megaregionapp.app.AppController;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class CustomerHelper {
 
-    private static final String TAG = com.kg.bar.customer.CustomerHelper.class.getSimpleName();
+    private static final String TAG = CustomerHelper.class.getSimpleName();
 
     public static void saveCustomer(final String sName, final String sPhone, final String sComp, final String sCity, final String sAddress, final String token) {
         // Tag used to cancel the request
