@@ -52,8 +52,7 @@ public class DeliveryDeliver extends AppCompatActivity {
     private RadioButton rb_rc, rb_sc, rb_sb, rb_rb;
     private RadioButton rb_bc, rb_bd, rb_bt;
 
-    private String signatureString = "";
-    private String differentReceiver = "";
+    private EditText differentReceiver;
     private LinearLayout mContent;
     private Delivery deliveryData;
     private String currentUser;
@@ -89,9 +88,9 @@ public class DeliveryDeliver extends AppCompatActivity {
         btnSaveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (differentReceiver.length() > 0) {
+                if (differentReceiver.getText() != null && differentReceiver.getText().length() > 0) {
                     try {
-                        deliverDelivery(deliveryData.deliveryId, signatureString, deliveryData.senderPhone, currentUser, differentReceiver);
+                        deliverDelivery(deliveryData.deliveryId, "", deliveryData.senderPhone, currentUser, differentReceiver.getText().toString());
                         CustomerHelper.saveCustomer(rName.getText().toString(), rPhone.getText().toString(), rComp.getText().toString(), rCity.getSelectedItem().toString(), rAdres.getText().toString(), token);
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -110,22 +109,6 @@ public class DeliveryDeliver extends AppCompatActivity {
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case SIGNATURE_ACTIVITY:
-                if (resultCode == RESULT_OK) {
-                    Bundle bundle = data.getExtras();
-                    signatureString = bundle.getString("signature");
-                    differentReceiver = bundle.getString("nameSurname");
-                    byte[] a = Base64.decode(signatureString, Base64.DEFAULT);
-                    Bitmap image = BitmapFactory.decodeByteArray(a, 0, a.length);
-                    BitmapDrawable background = new BitmapDrawable(this.getResources(), image);
-                    mContent.setBackground(background);
-                }
-                break;
-        }
-    }
 
     private void deliverDelivery(final String id, final String signature, final String sPhone, final String currentUser, final String differentReceiver) throws ParseException {
 
@@ -173,15 +156,9 @@ public class DeliveryDeliver extends AppCompatActivity {
                                 setResult(RESULT_OK, intent);
                                 finish();
 
-                            } else {
-                                MyDialog.createSimpleOkErrorDialog(DeliveryDeliver.this,
-                                        getApplicationContext().getString(R.string.dialog_error_title),
-                                        getApplicationContext().getString(R.string.NoData)).show();
                             }
                         } catch (JSONException e) {
-                            MyDialog.createSimpleOkErrorDialog(DeliveryDeliver.this,
-                                    getApplicationContext().getString(R.string.dialog_error_title),
-                                    getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
+                            Toast.makeText(getApplicationContext(),  getApplicationContext().getString(R.string.ErrorWhenLoading), Toast.LENGTH_LONG).show();
                         }
                     }, error -> {
                         NetworkUtil.checkHttpStatus(DeliveryDeliver.this, error);
@@ -300,6 +277,8 @@ public class DeliveryDeliver extends AppCompatActivity {
         sCity = findViewById(R.id.spinner_senderCity);
         rCity = findViewById(R.id.spinner_receiverCity);
         delType = findViewById(R.id.spinner_deliveryType);
+
+        differentReceiver = findViewById(R.id.differentReceiver);
 
     }
 

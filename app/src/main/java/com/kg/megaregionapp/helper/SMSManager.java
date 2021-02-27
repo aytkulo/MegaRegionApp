@@ -25,7 +25,7 @@ public class SMSManager {
 */
          //   sms.sendMultipartTextMessage(phoneNo, null, parts, null, null);
 
-            sms.sendTextMessage(phoneNo, null, smsContent, null, null);
+          //  sms.sendTextMessage(phoneNo, null, smsContent, null, null);
         } catch (Exception e) {
             e.printStackTrace();
         }

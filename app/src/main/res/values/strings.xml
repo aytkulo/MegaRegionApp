@@ -185,7 +185,7 @@
 
     <string name="PaymentType">Тип оплаты</string>
 
-    <string name="FillTheReceiverData">Вы должны получить подпись получателя или указать имя фамилию!</string>
+    <string name="FillTheReceiverData">Вы должны указать имя получателя!</string>
 
 
 
