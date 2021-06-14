@@ -42,7 +42,7 @@ public class StringData {
                         if (response.length() > 0) {
 
                             cityList.clear();
-                            cityList.add("");
+                            cityList.add("%");
                             JsonParser parser = new JsonParser();
                             Gson gson = new Gson();
 
@@ -87,7 +87,7 @@ public class StringData {
 
     public static List<String> getCityListConstant() {
         List<String> spinnerArray = new ArrayList<>();
-        spinnerArray.add("");
+        spinnerArray.add("%");
         spinnerArray.add("Бишкек");
         spinnerArray.add("Ош");
         spinnerArray.add("Жалал-Абад");
