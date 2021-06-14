@@ -9,6 +9,8 @@ public class AppConfig {
 
     public static String PURE_URL = "http://mega.nova.kg/mega-region/";
 
+    public static String URL_GET_CITIES = PURE_URL + "sectors/regions";
+
     public static String URL_DELIVERY_CHECK = PURE_URL + "delivery/check";
 
     public static String URL_DELIVERY_ENTRY = PURE_URL + "delivery/save";

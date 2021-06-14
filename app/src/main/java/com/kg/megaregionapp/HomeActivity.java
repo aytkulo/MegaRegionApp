@@ -27,6 +27,7 @@ import com.kg.megaregionapp.expense.CollectionAmounts;
 import com.kg.megaregionapp.expense.Transaction;
 import com.kg.megaregionapp.helper.HelperConstants;
 import com.kg.megaregionapp.helper.SessionManager;
+import com.kg.megaregionapp.helper.StringData;
 import com.kg.megaregionapp.orders.OrderEntry;
 import com.kg.megaregionapp.orders.OrderList;
 import com.kg.megaregionapp.orders.OrderListAssigned;
@@ -353,6 +354,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 else
                     access = false;
                 modifyFields(access);
+
+                StringData.listRegions(HomeActivity.this);
             }
         }
     }
