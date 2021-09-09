@@ -3,23 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.kg.megaregionapp">
 
-    <permission
-        android:name="android.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature" />
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.kg.megaregionapp.app.AppController"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
@@ -145,7 +137,7 @@
 
         <activity
             android:name="com.kg.megaregionapp.customer.CustomerList"
-            android:parentActivityName="com.kg.bar.HomeActivity" />
+            android:parentActivityName="com.kg.megaregionapp.HomeActivity" />
         <activity
             android:name="com.kg.megaregionapp.customer.CustomerUpdate"
             android:configChanges="orientation|keyboardHidden"

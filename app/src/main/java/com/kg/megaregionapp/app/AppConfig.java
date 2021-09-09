@@ -7,7 +7,7 @@ public class AppConfig {
 
    // public static String PURE_URL = "http://10.0.2.2:8080/";
 
-    public static String PURE_URL = "http://mega.nova.kg/mega-region/";
+    public static String PURE_URL = "http://194.163.181.93:8080/mega-api/";
 
     public static String URL_GET_CITIES = PURE_URL + "sectors/regions";
 
