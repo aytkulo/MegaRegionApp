@@ -386,22 +386,10 @@ public class DeliveryList extends AppCompatActivity {
             if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_DELIVER)) {
                 receiverCity = HomeActivity.userCity;
                 rCity.setSelection(getIndex(rCity, receiverCity));
-                senderCity = "%";
                 status = HelperConstants.DELIVERY_STATUS_NEW;
-                if(!HomeActivity.userRole.equalsIgnoreCase("ADMIN"))
-                    rCity.setEnabled(false);
             } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_UPDATE)) {
-                receiverCity = "%";
                 status = "%";
-                senderCity = HomeActivity.userCity;
                 sCity.setSelection(getIndex(sCity, senderCity));
-                if(!HomeActivity.userRole.equalsIgnoreCase("ADMIN"))
-                {
-                    sCity.setEnabled(false);
-                    acceptedPostman = HomeActivity.userLogin;
-                    postmans.setSelection(getIndex(postmans, acceptedPostman));
-                    postmans.setEnabled(false);
-                }
             } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_ASSIGN)) {
                 status = HelperConstants.DELIVERY_STATUS_NEW;
             } else {

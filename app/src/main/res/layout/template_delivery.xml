@@ -15,7 +15,7 @@
             android:layout_margin="@dimen/card_margin"
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:elevation="5dp"
-            card_view:cardBackgroundColor="@color/light_gray">
+            card_view:cardBackgroundColor="@color/gray">
 
         <TextView
                 android:id="@+id/textView37"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/card_margin"
-            card_view:cardBackgroundColor="@color/viewBg"
+            card_view:cardBackgroundColor="@color/light_gray"
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:contentPadding="10dp"
             card_view:elevation="5dp">
@@ -166,7 +166,7 @@
             android:layout_margin="@dimen/card_margin"
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:elevation="5dp"
-            card_view:cardBackgroundColor="@color/light_gray">
+            card_view:cardBackgroundColor="@color/gray">
 
         <TextView
                 android:id="@+id/textView7"
@@ -181,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/card_margin"
-            card_view:cardBackgroundColor="@color/viewBg"
+            card_view:cardBackgroundColor="@color/light_gray"
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:contentPadding="10dp"
             card_view:elevation="5dp">
@@ -317,7 +317,7 @@
             android:layout_margin="@dimen/card_margin"
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:elevation="5dp"
-            card_view:cardBackgroundColor="@color/light_gray">
+            card_view:cardBackgroundColor="@color/gray">
 
         <TextView
                 android:id="@+id/textView16"
@@ -334,7 +334,7 @@
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:elevation="5dp"
             card_view:contentPadding="10dp"
-            card_view:cardBackgroundColor="@color/viewBg">
+            card_view:cardBackgroundColor="@color/light_gray">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -376,7 +376,6 @@
                         android:layout_width="0dp"
                         android:layout_weight="0.3"
                         android:gravity="left"
-                        android:layout_marginRight="10dp"
                         android:textAlignment="gravity"
                         android:text="@string/DeliveryCount"/>
 
@@ -633,25 +632,43 @@
     <androidx.cardview.widget.CardView
             android:id="@+id/card_view_saving"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/card_margin"
             card_view:cardCornerRadius="@dimen/card_album_radius"
             card_view:elevation="5dp"
-            card_view:cardBackgroundColor="@color/corporateBackColor">
+            card_view:cardBackgroundColor="@color/light_gray">
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewReceived"
+                android:layout_width="match_parent"
+                android:text="Получил"
+                style="@style/InlineLabels"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorBlueDark"/>
+
+            <EditText
+                android:id="@+id/differentReceiver"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:layout_margin="10dp"
+                android:inputType="textMultiLine|textCapCharacters"
+                style="@style/InputTexts"/>
 
             <Button
                     android:id="@+id/btn_save_data"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.48"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@color/colorPrimary"
                     android:text="@string/SaveDeliveryInformation"
+                android:layout_margin="10dp"
                     android:textColor="@color/white"/>
 
         </LinearLayout>
