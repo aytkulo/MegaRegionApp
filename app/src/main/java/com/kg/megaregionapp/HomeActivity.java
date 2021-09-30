@@ -134,6 +134,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
  */
             isLoginNeeded();
 
+            StringData.listRegions(HomeActivity.this);
+
             modifyFields(access);
 
         } catch (Exception e) {
