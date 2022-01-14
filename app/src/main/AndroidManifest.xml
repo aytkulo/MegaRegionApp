@@ -158,8 +158,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <uses-library android:name="com.google.android.maps" />
-
 
 
         <activity
