@@ -373,7 +373,7 @@ public class DeliveryList extends AppCompatActivity {
                 status = HelperConstants.DELIVERY_STATUS_NEW;
             } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_UPDATE)) {
                 status = "%";
-                senderCity = HomeActivity.userCity;
+                senderCity = "%";
                 sCity.setSelection(getIndex(sCity, senderCity));
             } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_ASSIGN)) {
                 status = HelperConstants.DELIVERY_STATUS_NEW;

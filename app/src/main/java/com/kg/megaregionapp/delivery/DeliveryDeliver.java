@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.Glide;
 import com.kg.megaregionapp.HomeActivity;
 import com.kg.megaregionapp.R;
 import com.kg.megaregionapp.app.AppConfig;
@@ -57,6 +59,10 @@ public class DeliveryDeliver extends AppCompatActivity {
     private Delivery deliveryData;
     private String currentUser;
     private String token;
+
+    private Button btn_takePhoto;
+    private ImageView imageDelivery;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,6 +238,9 @@ public class DeliveryDeliver extends AppCompatActivity {
 
         setRadioGroupValue(delivery.paymentType);
         setBuyingRadioGroupValue(delivery.buyType);
+
+        if (delivery.deliveryImage != null && delivery.deliveryImage.length() > 1)
+            Glide.with(DeliveryDeliver.this).load(AppConfig.IMAGES_URL + delivery.deliveryImage).into(imageDelivery);
     }
 
     private int getIndex(Spinner spinner, String myString) {
@@ -247,6 +256,12 @@ public class DeliveryDeliver extends AppCompatActivity {
     }
 
     public void initializeItems() {
+
+        btn_takePhoto = findViewById(R.id.btn_take_photo);
+        btn_takePhoto.setVisibility(View.GONE);
+
+        imageDelivery = findViewById(R.id.imageDelivery);
+
         rg_payment = findViewById(R.id.rg_payment);
         rb_rb = findViewById(R.id.rb_rb);
         rb_rc = findViewById(R.id.rb_rc);
