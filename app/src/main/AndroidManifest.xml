@@ -6,14 +6,21 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:remove="android:maxSdkVersion" />
+    <uses-permission android:name="android.permission.READ_URI_PERMISSION" />
+
     <application
         android:name="com.kg.megaregionapp.app.AppController"
         android:allowBackup="true"
+        android:requestLegacyExternalStorage="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+
         android:usesCleartextTraffic="true">
         <activity android:name="com.kg.megaregionapp.delivery.DeliveryDebteds"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
@@ -23,6 +30,7 @@
             android:name="com.kg.megaregionapp.HomeActivity"
             android:label="@string/title_activity_home"
             android:launchMode="singleTop"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,9 +38,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kg.megaregionapp.users.LoginActivity">
+        <activity android:name="com.kg.megaregionapp.users.LoginActivity"
             android:screenOrientation="portrait"/>
-        </activity>
         <activity
             android:name="com.kg.megaregionapp.users.UserPermission"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
@@ -45,60 +52,43 @@
         <activity android:name="com.kg.megaregionapp.expense.TransactionOperation" />
         <activity
             android:name="com.kg.megaregionapp.expense.Transaction"
-            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
-            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.expense.ExpenseList"
-            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
-            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.customer.CorporateCustomerList"
-            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
-            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.users.RegisterActivity"
-            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
-            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name="com.kg.megaregionapp.users.UpdateData"
-            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_home"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.delivery.DeliveryOpenList"
-            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
-            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.delivery.DeliveryEntry"
-            android:configChanges="orientation"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
-            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.helper.Signature"
-            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:theme="@style/Transparent"
             android:windowSoftInputMode="stateHidden|adjustResize"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.delivery.DeliveryDeliver"
-            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
-            android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.orders.OrderEntry"
@@ -193,6 +183,19 @@
             android:name="com.kg.megaregionapp.delivery.DeliveryWho"
             android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"
+                tools:replace="android:resource" />
+        </provider>
+
     </application>
 
 </manifest>

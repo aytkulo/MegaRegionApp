@@ -317,23 +317,7 @@ public class DeliveryList extends AppCompatActivity {
                                     Delivery dd = gson.fromJson(mJsonM, Delivery.class);
 
                                     dd.number = i + 1;
-                                    /*
-                                    dd.sFullAddress = dd.senderCity + " - " + dd.senderPhone;
-                                    if (dd.senderName.length() > 3)
-                                        dd.sFullAddress = dd.sFullAddress + ", " + dd.senderName;
-                                    if (dd.senderAddress.length() > 3)
-                                        dd.sFullAddress = dd.sFullAddress + ", " + dd.senderAddress;
-                                    if (dd.senderCompany.length() > 3)
-                                        dd.sFullAddress = dd.sFullAddress + ", " + dd.senderCompany;
 
-                                    dd.rFullAddress = dd.receiverCity + " - " + dd.receiverPhone;
-                                    if (dd.receiverName.length() > 3)
-                                        dd.rFullAddress = dd.rFullAddress + ", " + dd.receiverName;
-                                    if (dd.receiverAddress.length() > 3)
-                                        dd.rFullAddress = dd.rFullAddress + ", " + dd.receiverAddress;
-                                    if (dd.receiverCompany.length() > 3)
-                                        dd.rFullAddress = dd.rFullAddress + ", " + dd.receiverCompany;
-*/
                                     deliveryList.add(dd);
                                 }
                                 if (deliveryList.size() > 0) {
@@ -389,6 +373,7 @@ public class DeliveryList extends AppCompatActivity {
                 status = HelperConstants.DELIVERY_STATUS_NEW;
             } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_UPDATE)) {
                 status = "%";
+                senderCity = HomeActivity.userCity;
                 sCity.setSelection(getIndex(sCity, senderCity));
             } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_ASSIGN)) {
                 status = HelperConstants.DELIVERY_STATUS_NEW;

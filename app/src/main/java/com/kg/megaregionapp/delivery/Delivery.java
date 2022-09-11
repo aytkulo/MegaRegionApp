@@ -5,6 +5,8 @@ import java.io.Serializable;
 
 public class Delivery implements Serializable {
 
+    public String deliveryImage;
+
     public String sFullName;
     public String sFullAddress;
     public String rFullName;

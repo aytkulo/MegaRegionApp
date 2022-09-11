@@ -1,8 +1,10 @@
 package com.kg.megaregionapp.delivery;
 
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -10,7 +12,13 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.ParcelFileDescriptor;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextWatcher;
@@ -20,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,7 +36,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -52,19 +65,23 @@ import com.kg.megaregionapp.utils.NetworkUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class DeliveryEntry extends AppCompatActivity {
 
-    private static final String TAG = DeliveryEntry.class.getSimpleName();
+    private static final int CAMERA_REQUEST = 1888;
+    private static final int REQUEST_PERMISSION = 1111;
     public static final int SIGNATURE_ACTIVITY = 1;
     public static final int SENDER_COMPANY_LIST = 2;
     public static final int RECEIVER_COMPANY_LIST = 3;
     private String signatureString = "";
-    private Button btn_takeSignature;
     private Button btn_saveData;
     private LinearLayout mContent;
     private ProgressDialog pDialog;
@@ -83,7 +100,7 @@ public class DeliveryEntry extends AppCompatActivity {
     ArrayAdapter<String> myAdapterSC;
     ArrayAdapter<String> myAdapterRC;
 
-    private EditText delCount, delPrice, delItemPrice, delExpl, paidAmount, differentReceiver;
+    private EditText delCount, delPrice, delItemPrice, delExpl, paidAmount, differentReceiver, deliveryImageName;
     private TextView textLabelReceiver;
     private RadioGroup rg_payment, rg_buying;
     private RadioButton rb_payment_senderbank, rb_payment_receiverbank, rb_payment_sendercash;
@@ -92,10 +109,20 @@ public class DeliveryEntry extends AppCompatActivity {
     private String token;
     String[] item = {""};
 
+    private String imageNameString = "";
+    private Button btn_takePhoto;
+    private ImageView imageDelivery;
+
+    Uri imageUri;
+    File output;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_entry);
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
         btn_saveData = findViewById(R.id.btn_save_data);
         mContent = findViewById(R.id.linearLayout);
@@ -386,6 +413,22 @@ public class DeliveryEntry extends AppCompatActivity {
             sPhone.setSelection(sPhone.getText().length());
             Selection.setSelection(etext, position);
         }
+
+
+        btn_takePhoto.setOnClickListener(v -> {
+            File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            output = new File(dir, (new Date()).getTime() +".png");
+
+            imageUri = FileProvider.getUriForFile(DeliveryEntry.this, DeliveryEntry.this.getApplicationContext().getPackageName() + ".provider", output);
+
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(output));
+            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        });
+
+
     }
 
 
@@ -419,9 +462,54 @@ public class DeliveryEntry extends AppCompatActivity {
         return selected;
     }
 
+
+    @Override
+    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                imageDelivery.setImageURI(imageUri);
+                try  {
+                    ParcelFileDescriptor pfd = this.getContentResolver().openFileDescriptor(imageUri, "r");
+                    if (pfd != null) {
+                        Bitmap bitmap = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor());
+                        uploadImage(bitmap);
+                    }
+                } catch (IOException | ParseException ex) {
+
+                }
+            } else {
+                // User refused to grant permission.
+            }
+        }
+    }
+
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SIGNATURE_ACTIVITY) {
+        if (requestCode == CAMERA_REQUEST) {
+            if (resultCode == RESULT_OK) {
+
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            REQUEST_PERMISSION);
+                }
+                else
+                {
+                    imageDelivery.setImageURI(imageUri);
+                    try  {
+                        ParcelFileDescriptor pfd = this.getContentResolver().openFileDescriptor(Uri.fromFile(output), "r");
+                        if (pfd != null) {
+                            Bitmap bitmap = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor());
+                            uploadImage(bitmap);
+                        }
+                    } catch (IOException | ParseException ex) {
+
+                    }
+                }
+            }
+        }
+        else if (requestCode == SIGNATURE_ACTIVITY) {
             if (resultCode == RESULT_OK) {
                 Bundle bundle = data.getExtras();
                 signatureString = bundle.getString("signature");
@@ -468,6 +556,95 @@ public class DeliveryEntry extends AppCompatActivity {
     }
 
 
+
+    private String getStringImage(Bitmap bmp){
+
+        int outWidth;
+        int outHeight;
+        int inWidth = bmp.getWidth();
+        int inHeight = bmp.getHeight();
+        if(inWidth > 700){
+            outWidth = 700;
+            outHeight = (inHeight * 700)/inWidth;
+        } else {
+            outHeight = inWidth;
+            outWidth = inHeight;
+        }
+
+        Bitmap bitmap1 = Bitmap.createScaledBitmap(bmp, outWidth, outHeight, true);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap1.compress(Bitmap.CompressFormat.PNG, 60, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    private void uploadImage(final Bitmap bitmap) throws ParseException {
+
+        if (!NetworkUtil.isNetworkConnected(DeliveryEntry.this)) {
+            MyDialog.createSimpleOkErrorDialog(DeliveryEntry.this,
+                    getApplicationContext().getString(R.string.dialog_error_title),
+                    getApplicationContext().getString(R.string.check_internet)).show();
+        } else if (NetworkUtil.isTokenExpired()) {
+            MyDialog.createSimpleOkErrorDialog(DeliveryEntry.this,
+                    getApplicationContext().getString(R.string.dialog_error_title),
+                    getApplicationContext().getString(R.string.relogin)).show();
+        } else {
+            String tag_string_req = "req_save_image";
+            pDialog.setMessage("Saving Image ...");
+            showDialog();
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("imageString", getStringImage(bitmap));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            JsonObjectRequest req = new JsonObjectRequest(AppConfig.URL_IMAGES_SAVE, jsonObject,
+                    response -> {
+                        hideDialog();
+                        try {
+                            if (response.getString("fileName").length() > 0)
+                            {
+                                imageNameString = response.getString("fileName");
+                                imageDelivery.setImageBitmap(bitmap);
+                                deliveryImageName.setText("Фото успешно выгружен.");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }, error -> {
+                        if (error instanceof AuthFailureError) {
+                            Toast.makeText(DeliveryEntry.this, "Бул операция үчүн уруксатыңыз жок!", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            MyDialog.createSimpleOkErrorDialog(DeliveryEntry.this,
+                                    DeliveryEntry.this.getString(R.string.dialog_error_title),
+                                    DeliveryEntry.this.getString(R.string.server_error)).show();
+                        }
+                        deliveryImageName.setText("Не удалось выгрузить фото .");
+                        hideDialog();
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Authorization", token);
+                    return headers;
+                }
+            };
+
+            req.setRetryPolicy(new DefaultRetryPolicy(6000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            // Adding request to request queue
+            AppController.getInstance().addToRequestQueue(req, tag_string_req);
+        }
+    }
+
+
+
     private void saveData()
     {
         try {
@@ -484,6 +661,8 @@ public class DeliveryEntry extends AppCompatActivity {
         }
 
     }
+
+
 
     private void saveDelivery(final String sName, final String sPhone, final String sComp, final String sCity, final String sAddress,
                               final String rName, final String rPhone, final String rComp, final String rCity, final String rAddress,
@@ -531,64 +710,58 @@ public class DeliveryEntry extends AppCompatActivity {
                 jsonObject.put("assignedSector", "");
                 jsonObject.put("deliveredPerson", "");
                 jsonObject.put("receiver", "");
+                jsonObject.put("deliveryImage", imageNameString);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             JsonObjectRequest req = new JsonObjectRequest(AppConfig.URL_DELIVERY_ENTRY, jsonObject,
-                    new Response.Listener<JSONObject>() {
+                    response -> {
+                        hideDialog();
+                        btn_saveData.setEnabled(true);
+                        try {
+                            if (response.getString("deliveryId").length() > 0) {
 
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            hideDialog();
-                            btn_saveData.setEnabled(true);
-                            try {
-                                if (response.getString("deliveryId").length() > 0) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Маалыматтар системага киргизилди!", Toast.LENGTH_LONG).show();
 
-                                    Toast.makeText(getApplicationContext(),
-                                            "Маалыматтар системага киргизилди!", Toast.LENGTH_LONG).show();
-
-                                    // Bul jer buyuk ihtimal order uzerinden delivery kirilgende kerek bolso kerek. Esimde jok.
-                                    Bundle b = new Bundle();
-                                    b.putString("STATUS", HelperConstants.DELIVERYACCEPTED);
-                                    Intent intent = new Intent();
-                                    intent.putExtras(b);
-                                    setResult(RESULT_OK, intent);
-                                    finish();
-                                } else {
-                                    MyDialog.createSimpleOkErrorDialog(DeliveryEntry.this,
-                                            getApplicationContext().getString(R.string.dialog_error_title),
-                                            getApplicationContext().getString(R.string.NoData)).show();
-                                }
-                            } catch (JSONException e) {
+                                // Bul jer buyuk ihtimal order uzerinden delivery kirilgende kerek bolso kerek. Esimde jok.
+                                Bundle b = new Bundle();
+                                b.putString("STATUS", HelperConstants.DELIVERYACCEPTED);
+                                Intent intent = new Intent();
+                                intent.putExtras(b);
+                                setResult(RESULT_OK, intent);
+                                finish();
+                            } else {
                                 MyDialog.createSimpleOkErrorDialog(DeliveryEntry.this,
                                         getApplicationContext().getString(R.string.dialog_error_title),
-                                        getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
+                                        getApplicationContext().getString(R.string.NoData)).show();
                             }
+                        } catch (JSONException e) {
+                            MyDialog.createSimpleOkErrorDialog(DeliveryEntry.this,
+                                    getApplicationContext().getString(R.string.dialog_error_title),
+                                    getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                         }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    if (error instanceof AuthFailureError) {
-                        if (error.networkResponse.statusCode == 403) {
-                            Toast.makeText(DeliveryEntry.this, "Бул операция үчүн уруксатыңыз жок!", Toast.LENGTH_LONG).show();
-                            Intent loginIntent = new Intent(DeliveryEntry.this, LoginActivity.class);
-                            DeliveryEntry.this.startActivity(loginIntent);
+                    }, error -> {
+                        if (error instanceof AuthFailureError) {
+                            if (error.networkResponse.statusCode == 403) {
+                                Toast.makeText(DeliveryEntry.this, "Бул операция үчүн уруксатыңыз жок!", Toast.LENGTH_LONG).show();
+                                Intent loginIntent = new Intent(DeliveryEntry.this, LoginActivity.class);
+                                DeliveryEntry.this.startActivity(loginIntent);
+                            } else {
+                                Toast.makeText(DeliveryEntry.this, "Бул операция үчүн уруксатыңыз жок!", Toast.LENGTH_LONG).show();
+                            }
+                        } else if (error.networkResponse.statusCode == 409) {
+                            Toast.makeText(DeliveryEntry.this, "Такая посылка уже существует в системе!", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(DeliveryEntry.this, "Бул операция үчүн уруксатыңыз жок!", Toast.LENGTH_LONG).show();
+                            MyDialog.createSimpleOkErrorDialog(DeliveryEntry.this,
+                                    DeliveryEntry.this.getString(R.string.dialog_error_title),
+                                    DeliveryEntry.this.getString(R.string.server_error)).show();
                         }
-                    } else if (error.networkResponse.statusCode == 409) {
-                        Toast.makeText(DeliveryEntry.this, "Такая посылка уже существует в системе!", Toast.LENGTH_LONG).show();
-                    } else {
-                        MyDialog.createSimpleOkErrorDialog(DeliveryEntry.this,
-                                DeliveryEntry.this.getString(R.string.dialog_error_title),
-                                DeliveryEntry.this.getString(R.string.server_error)).show();
-                    }
-                    hideDialog();
-                    btn_saveData.setEnabled(true);
-                }
-            }) {
+                        hideDialog();
+                        btn_saveData.setEnabled(true);
+                    }) {
 
                 @Override
                 public Map<String, String> getHeaders() {
@@ -630,21 +803,15 @@ public class DeliveryEntry extends AppCompatActivity {
             }
 
             JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, AppConfig.URL_CORPORATE_CUSTOMER_CHECK, jsonObject,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            if (response == null) {
-                                intent.putExtra("city", city);
-                                startActivityForResult(intent, COMPANY_LIST);
-                            }
+                    response -> {
+                        if (response == null) {
+                            intent.putExtra("city", city);
+                            startActivityForResult(intent, COMPANY_LIST);
                         }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    intent.putExtra("city", city);
-                    startActivityForResult(intent, COMPANY_LIST);
-                }
-            }) {
+                    }, error -> {
+                        intent.putExtra("city", city);
+                        startActivityForResult(intent, COMPANY_LIST);
+                    }) {
                 @Override
                 public Map<String, String> getHeaders() {
                     HashMap<String, String> headers = new HashMap<String, String>();
@@ -668,6 +835,11 @@ public class DeliveryEntry extends AppCompatActivity {
 
 
     public void initializeItems() {
+
+        btn_takePhoto = findViewById(R.id.btn_take_photo);
+        imageDelivery = findViewById(R.id.imageDelivery);
+        deliveryImageName = findViewById(R.id.deliveryImageName);
+
         rg_payment = findViewById(R.id.rg_payment);
         rg_buying = findViewById(R.id.rg_buying);
 

@@ -9,6 +9,10 @@ public class AppConfig {
 
     public static String PURE_URL = "http://194.163.181.93:8080/mega-api/";
 
+    public static String IMAGES_URL = "http://194.163.181.93:8080/mega_region_images/";
+
+    public static String URL_IMAGES_SAVE = PURE_URL + "files/upload/string";
+
     public static String URL_GET_CITIES = PURE_URL + "sectors/regions";
 
     public static String URL_DELIVERY_CHECK = PURE_URL + "delivery/check";

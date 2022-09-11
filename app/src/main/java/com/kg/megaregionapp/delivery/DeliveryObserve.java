@@ -10,6 +10,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -20,6 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.Glide;
 import com.kg.megaregionapp.HomeActivity;
 import com.kg.megaregionapp.R;
 import com.kg.megaregionapp.app.AppConfig;
@@ -43,6 +45,7 @@ public class DeliveryObserve extends AppCompatActivity {
     private EditText delCount, delPrice, delItemPrice, delExpl, differentReceiver, paidAmount;
     private RadioButton rb_rc, rb_sc, rb_sb, rb_rb;
     private RadioButton rb_bc, rb_bd, rb_bt;
+    private ImageView imageViewDelivery;
 
     String senderSignatureString = "";
     String receiverSignatureString = "";
@@ -176,6 +179,8 @@ public class DeliveryObserve extends AppCompatActivity {
     }
 
     public void initializeItems() {
+
+        imageViewDelivery = findViewById(R.id.imageDeliveryPhoto);
         rb_rb = findViewById(R.id.rb_rb);
         rb_rc = findViewById(R.id.rb_rc);
         rb_sb = findViewById(R.id.rb_sb);
@@ -240,6 +245,9 @@ public class DeliveryObserve extends AppCompatActivity {
 
         setRadioGroupValue(delivery.paymentType);
         setBuyingRadioGroupValue(delivery.buyType);
+
+        if (delivery.deliveryImage != null && delivery.deliveryImage.length() > 1)
+            Glide.with(DeliveryObserve.this).load(AppConfig.IMAGES_URL + delivery.deliveryImage).into(imageViewDelivery);
     }
 
     private void setRadioGroupValue(String selectedValue) {
