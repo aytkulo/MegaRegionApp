@@ -23,6 +23,7 @@ import com.kg.megaregionapp.delivery.DeliveryEntry;
 import com.kg.megaregionapp.delivery.DeliveryList;
 import com.kg.megaregionapp.delivery.DeliveryOpenList;
 import com.kg.megaregionapp.delivery.DeliveryWho;
+import com.kg.megaregionapp.expense.AccountantActivity;
 import com.kg.megaregionapp.expense.CollectionAmounts;
 import com.kg.megaregionapp.expense.Transaction;
 import com.kg.megaregionapp.helper.HelperConstants;
@@ -208,7 +209,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_preorder_new) {
+     /*   if (id == R.id.nav_preorder_new) {
 
             Intent intent = new Intent(this, OrderEntry.class);
             startActivity(intent);
@@ -223,7 +224,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(HomeActivity.this, OrderListAssigned.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_delivery_who) {
+        } else*/ if (id == R.id.nav_delivery_who) {
 
             Intent intent = new Intent(HomeActivity.this, DeliveryWho.class);
             intent.putExtra(HelperConstants.DELIVERY_OPERATION, HelperConstants.DELIVERY_WHO);
@@ -293,6 +294,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, DeleteUser.class);
             startActivity(intent);
         }
+        else if (id == R.id.nav_account_report) {
+            Intent intent = new Intent(this, AccountantActivity.class);
+            startActivity(intent);
+        }
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

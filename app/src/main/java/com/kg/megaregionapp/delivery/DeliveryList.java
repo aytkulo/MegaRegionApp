@@ -172,34 +172,31 @@ public class DeliveryList extends AppCompatActivity {
  */
 
 
-        listViewDeliveries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        listViewDeliveries.setOnItemClickListener((parent, view, position, id) -> {
 
-                delivery = (Delivery) parent.getItemAtPosition(position);
-                if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_DELIVER)) {
-                    Intent intentDelivery = new Intent(DeliveryList.this, DeliveryDeliver.class);
-                    intentDelivery.putExtra("delivery", delivery);
-                    startActivityForResult(intentDelivery, 1);
-                } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_UPDATE)) {
-                    Intent intentDelivery = new Intent(DeliveryList.this, DeliveryUpdate.class);
-                    intentDelivery.putExtra("delivery", delivery);
-                    startActivityForResult(intentDelivery, 200);
-                } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_DELETE)) {
-                    Intent intentDelivery = new Intent(DeliveryList.this, DeliveryDelete.class);
-                    intentDelivery.putExtra("delivery", delivery);
-                    startActivityForResult(intentDelivery, 3);
-                } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_ASSIGN)) {
-                    Intent intentDelivery = new Intent(DeliveryList.this, DeliveryAssign.class);
-                    intentDelivery.putExtra("delivery", delivery);
-                    startActivityForResult(intentDelivery, 5);
-                } else {
-                    Intent intentDelivery = new Intent(DeliveryList.this, DeliveryObserve.class);
-                    intentDelivery.putExtra("delivery", delivery);
-                    startActivityForResult(intentDelivery, 4);
-                }
-
+            delivery = (Delivery) parent.getItemAtPosition(position);
+            if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_DELIVER)) {
+                Intent intentDelivery = new Intent(DeliveryList.this, DeliveryDeliver.class);
+                intentDelivery.putExtra("delivery", delivery);
+                startActivityForResult(intentDelivery, 1);
+            } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_UPDATE)) {
+                Intent intentDelivery = new Intent(DeliveryList.this, DeliveryUpdate.class);
+                intentDelivery.putExtra("delivery", delivery);
+                startActivityForResult(intentDelivery, 200);
+            } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_DELETE)) {
+                Intent intentDelivery = new Intent(DeliveryList.this, DeliveryDelete.class);
+                intentDelivery.putExtra("delivery", delivery);
+                startActivityForResult(intentDelivery, 3);
+            } else if (operationType.equalsIgnoreCase(HelperConstants.DELIVERY_ASSIGN)) {
+                Intent intentDelivery = new Intent(DeliveryList.this, DeliveryAssign.class);
+                intentDelivery.putExtra("delivery", delivery);
+                startActivityForResult(intentDelivery, 5);
+            } else {
+                Intent intentDelivery = new Intent(DeliveryList.this, DeliveryObserve.class);
+                intentDelivery.putExtra("delivery", delivery);
+                startActivityForResult(intentDelivery, 4);
             }
+
         });
 
 

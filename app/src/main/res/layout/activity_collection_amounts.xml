@@ -82,8 +82,9 @@
                         style="@style/MainLabels"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
+                        android:focusable="false"
                         android:background="@color/white"
-                        android:inputType="date"
+                        android:inputType="number"
                         android:textAlignment="center"/>
 
             </LinearLayout>
@@ -105,7 +106,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/white"
-                    android:inputType="date"
+                    android:inputType="number"
+                    android:focusable="false"
                     android:textAlignment="center"/>
 
             </LinearLayout>
@@ -114,7 +116,17 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_save_data"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@color/colorPrimary"
+                    android:text="$$$"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/white"/>
+
 
                 <Switch
                     android:id="@+id/switch_permission"

@@ -91,19 +91,16 @@ public class DeliveryDeliver extends AppCompatActivity {
         rCity.setAdapter(cityAdapter);
 
 
-        btnSaveData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (differentReceiver.getText() != null && differentReceiver.getText().length() > 0) {
-                    try {
-                        deliverDelivery(deliveryData.deliveryId, "", deliveryData.senderPhone, currentUser, differentReceiver.getText().toString());
-                        CustomerHelper.saveCustomer(rName.getText().toString(), rPhone.getText().toString(), rComp.getText().toString(), rCity.getSelectedItem().toString(), rAdres.getText().toString(), token);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                } else
-                    Toast.makeText(getApplicationContext(), getString(R.string.FillTheReceiverData), Toast.LENGTH_LONG).show();// Set your own toast  message
-            }
+        btnSaveData.setOnClickListener(v -> {
+            if (differentReceiver.getText() != null && differentReceiver.getText().length() > 0) {
+                try {
+                    deliverDelivery(deliveryData.deliveryId, "", deliveryData.senderPhone, currentUser, differentReceiver.getText().toString());
+                    CustomerHelper.saveCustomer(rName.getText().toString(), rPhone.getText().toString(), rComp.getText().toString(), rCity.getSelectedItem().toString(), rAdres.getText().toString(), token);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } else
+                Toast.makeText(getApplicationContext(), getString(R.string.FillTheReceiverData), Toast.LENGTH_LONG).show();// Set your own toast  message
         });
 
         Intent deliveryIntent = getIntent();

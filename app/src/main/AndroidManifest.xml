@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.kg.megaregionapp">
+    package="com.kg.megaregionapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         tools:remove="android:maxSdkVersion" />
@@ -14,32 +13,40 @@
     <application
         android:name="com.kg.megaregionapp.app.AppController"
         android:allowBackup="true"
-        android:requestLegacyExternalStorage="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        android:windowIsFloating="true" >
+        <activity
+            android:name="com.kg.megaregionapp.expense.AccountantActivity"
+            android:parentActivityName="com.kg.megaregionapp.HomeActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"  />
 
-        android:usesCleartextTraffic="true">
-        <activity android:name="com.kg.megaregionapp.delivery.DeliveryDebteds"
+        <activity
+            android:name="com.kg.megaregionapp.delivery.DeliveryDebteds"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.HomeActivity"
+            android:exported="true"
             android:label="@string/title_activity_home"
             android:launchMode="singleTop"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kg.megaregionapp.users.LoginActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.kg.megaregionapp.users.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.kg.megaregionapp.users.UserPermission"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
@@ -66,7 +73,6 @@
             android:name="com.kg.megaregionapp.users.RegisterActivity"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name="com.kg.megaregionapp.users.UpdateData"
             android:label="@string/title_activity_home"
@@ -111,8 +117,8 @@
         <activity
             android:name="com.kg.megaregionapp.delivery.DeliveryList"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="com.kg.megaregionapp.HomeActivity" />
+            android:parentActivityName="com.kg.megaregionapp.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.kg.megaregionapp.delivery.DeliveryUpdate"
             android:configChanges="orientation|keyboardHidden"
@@ -124,7 +130,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.PopupTheme"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name="com.kg.megaregionapp.customer.CustomerList"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity" />
@@ -148,8 +153,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-
-
         <activity
             android:name="com.kg.megaregionapp.expense.FinancialReport"
             android:configChanges="orientation|keyboardHidden"
@@ -189,13 +192,12 @@
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true"
-            tools:replace="android:authorities">
+            tools:replace="android:authorities" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"
                 tools:replace="android:resource" />
         </provider>
-
     </application>
 
 </manifest>

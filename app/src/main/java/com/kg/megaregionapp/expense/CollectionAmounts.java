@@ -4,9 +4,12 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -48,6 +51,7 @@ public class CollectionAmounts extends AppCompatActivity {
     private static final String TAG = CollectionAmounts.class.getSimpleName();
     public static int DIALOG_ID = 0;
     private EditText ed_Date, ed_PaymentAmount, ed_Remaining;
+    private EditText dd_Date, dd_Postman, dd_Amount, dd_Expense;
     Spinner spinner_users;
     private ListView collectionListView;
     private int year_x, month_x, day_x;
@@ -57,7 +61,9 @@ public class CollectionAmounts extends AppCompatActivity {
     private long totalCollection = 0;
     private long totalPodOtchet = 0;
     private Switch permissionSwitch;
+    private Button btn_open_dialog, dd_cancel, dd_save;
     private boolean permissionOperation = true;
+    private Dialog dialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +75,24 @@ public class CollectionAmounts extends AppCompatActivity {
         ed_Remaining = findViewById(R.id.ed_remaining);
         collectionListView =  findViewById(R.id.listViewCollections);
         spinner_users =  findViewById(R.id.spinner_postman);
+        btn_open_dialog =  findViewById(R.id.btn_save_data);
 
         permissionSwitch = findViewById(R.id.switch_permission);
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(true);
 
-        permissionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    String postman = spinner_users.getSelectedItem().toString();
-                    if (postman.length() > 2 && permissionOperation)
-                        updatePermission(isChecked, postman);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+        permissionSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            try {
+                String postman = spinner_users.getSelectedItem().toString();
+                if (postman.length() > 2 && permissionOperation)
+                    updatePermission(isChecked, postman);
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
         });
+
+
 
         try {
             PostHelper.listPostmans(HomeActivity.userCity, CollectionAmounts.this, spinner_users);
@@ -106,18 +111,48 @@ public class CollectionAmounts extends AppCompatActivity {
         month_x = calendar.get(Calendar.MONTH);
         day_x = calendar.get(Calendar.DAY_OF_MONTH);
 
-        ed_Date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog(DIALOG_ID);
-            }
+        ed_Date.setOnClickListener(v -> showDialog(DIALOG_ID));
+
+
+        dialog = new Dialog(this);
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View vDialog = inflater.inflate(R.layout.record_expense_dialog, null);  // this line
+        dialog.setContentView(vDialog);
+
+        dd_Date = vDialog.findViewById(R.id.dd_date);
+        dd_Postman = vDialog.findViewById(R.id.dd_postman);
+        dd_Amount = vDialog.findViewById(R.id.dd_collection_amount);
+        dd_Expense = vDialog.findViewById(R.id.dd_expense);
+        dd_cancel = vDialog.findViewById(R.id.dd_btn_cancel);
+        dd_save = vDialog.findViewById(R.id.dd_btn_save_data);
+        dd_Date.setText(strDate);
+        dd_Expense.setText("0");
+
+        btn_open_dialog.setOnClickListener(v -> {
+            Window window = dialog.getWindow();
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.show();
         });
 
+        dd_cancel.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+
+        dd_save.setOnClickListener(v -> {
+            try {
+                saveCollection();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        });
 
         spinner_users.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String postman = spinner_users.getSelectedItem().toString();
+                dd_Postman.setText(postman);
                 try {
                     if (postman.length() > 1)
                     {
@@ -134,6 +169,54 @@ public class CollectionAmounts extends AppCompatActivity {
             }
         });
 
+    }
+
+
+
+    private void saveCollection() throws ParseException {
+
+        if (!NetworkUtil.isNetworkConnected(CollectionAmounts.this)) {
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
+                    getApplicationContext().getString(R.string.dialog_error_title),
+                    getApplicationContext().getString(R.string.check_internet)).show();
+        } else if (NetworkUtil.isTokenExpired()) {
+            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
+                    getApplicationContext().getString(R.string.dialog_error_title),
+                    getApplicationContext().getString(R.string.relogin)).show();
+        } else {
+            String tag_string_req = "req_update_user_permission";
+
+            pDialog.setMessage("Процесс идет ...");
+            showDialog();
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("amount", dd_Amount.getText());
+                jsonObject.put("enteredUser", HomeActivity.userLogin);
+                jsonObject.put("postman", dd_Postman.getText());
+                jsonObject.put("expense", dd_Expense.getText());
+                jsonObject.put("expenseDate", dd_Date.getText());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JsonObjectRequest req = new JsonObjectRequest(AppConfig.URL_EXPENSE_SAVE, jsonObject,
+                    response -> {
+                        hideDialog();
+                        dialog.dismiss();
+                    }, error -> {
+                NetworkUtil.checkHttpStatus(CollectionAmounts.this, error);
+                hideDialog();
+
+            }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Authorization", HomeActivity.token);
+                    return headers;
+                }
+            };
+            AppController.getInstance().addToRequestQueue(req, tag_string_req);
+        }
     }
 
 
@@ -163,20 +246,10 @@ public class CollectionAmounts extends AppCompatActivity {
             }
 
             JsonObjectRequest req = new JsonObjectRequest(AppConfig.URL_USER_PERMISSION, jsonObject,
-                    new Response.Listener<JSONObject>() {
-
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            hideDialog();
-                        }
-                    }, new Response.ErrorListener() {
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    NetworkUtil.checkHttpStatus(CollectionAmounts.this, error);
-                    hideDialog();
-                }
-            }) {
+                    response -> hideDialog(), error -> {
+                        NetworkUtil.checkHttpStatus(CollectionAmounts.this, error);
+                        hideDialog();
+                    }) {
                 @Override
                 public Map<String, String> getHeaders() {
                     HashMap<String, String> headers = new HashMap<String, String>();
@@ -202,23 +275,19 @@ public class CollectionAmounts extends AppCompatActivity {
             String tag_string_req = "req_get_user_permission";
             permissionOperation = false;
             JsonObjectRequest req = new JsonObjectRequest(AppConfig.URL_GET_USER_PERMISSION + "/" + postman, null,
-                    new Response.Listener<JSONObject>() {
-
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            if (response != null)
-                            {
-                                JsonParser parser = new JsonParser();
-                                Gson gson = new Gson();
-                                JsonElement mJsonM = parser.parse(response.toString());
-                                CollectionAmounts.Permission dd = gson.fromJson(mJsonM, CollectionAmounts.Permission.class);
-                                if(dd.permission)
-                                    permissionSwitch.setChecked(false);
-                                else
-                                    permissionSwitch.setChecked(true);
-                            }
-                            permissionOperation = true;
+                    response -> {
+                        if (response != null)
+                        {
+                            JsonParser parser = new JsonParser();
+                            Gson gson = new Gson();
+                            JsonElement mJsonM = parser.parse(response.toString());
+                            Permission dd = gson.fromJson(mJsonM, Permission.class);
+                            if(dd.permission)
+                                permissionSwitch.setChecked(false);
+                            else
+                                permissionSwitch.setChecked(true);
                         }
+                        permissionOperation = true;
                     }, new Response.ErrorListener() {
 
                 @Override
@@ -266,52 +335,49 @@ public class CollectionAmounts extends AppCompatActivity {
             }
 
             CustomJsonArrayRequest req = new CustomJsonArrayRequest(Request.Method.POST, AppConfig.URL_COLLECTION_LIST, jsonObject,
-                    new Response.Listener<JSONArray>() {
+                    response -> {
+                        hideDialog();
+                        long summa = 0;
+                        try {
+                            if (response.length() > 0) {
 
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            hideDialog();
-                            long summa = 0;
-                            try {
-                                if (response.length() > 0) {
-
-                                    int count = 1;
-                                    for (int i = 0; i < response.length(); i++) {
-                                        JSONObject c = response.getJSONObject(i);
-                                        Expense ex = new Expense();
-                                        ex.exAmount = c.getString("amount");
-                                        summa = summa + Long.valueOf(ex.exAmount);
-                                        ex.exDate = count + ".";
-                                        ex.exName = c.getString("senderCity") + "-" + c.getString("receiverCity") + "\n" +
-                                                c.getString("name") + "-" + c.getString("phone") + "-" + c.getString("address")
-                                                + "\n" + c.getString("paymentType");
-                                        collectionList.add(ex);
-                                        count++;
-                                    }
-                                    totalCollection = summa;
-
-                                    if (summa != 0) {
-                                        Expense ex = new Expense();
-                                        ex.exAmount = String.valueOf(summa);
-                                        ex.exName = "Жалпы";
-                                        collectionList.add(ex);
-                                    }
-                                    // update the adapater
-                                    if (collectionList.size() > 0) {
-                                        CollectionListAdapter collListAdapter = new CollectionListAdapter(collectionList, CollectionAmounts.this);
-                                        collectionListView.setAdapter(collListAdapter);
-                                    }
+                                int count = 1;
+                                for (int i = 0; i < response.length(); i++) {
+                                    JSONObject c = response.getJSONObject(i);
+                                    Expense ex = new Expense();
+                                    ex.exAmount = c.getString("amount");
+                                    summa = summa + Long.valueOf(ex.exAmount);
+                                    ex.exDate = count + ".";
+                                    ex.exName = c.getString("senderCity") + "-" + c.getString("receiverCity") + "\n" +
+                                            c.getString("name") + "-" + c.getString("phone") + "-" + c.getString("address")
+                                            + "\n" + c.getString("paymentType");
+                                    collectionList.add(ex);
+                                    count++;
                                 }
+                                totalCollection = summa;
 
-                                ed_Remaining.setText(totalPodOtchet + totalCollection + "");
-
-                            } catch (JSONException e) {
-                                MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
-                                        getApplicationContext().getString(R.string.dialog_error_title),
-                                        getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
+                                if (summa != 0) {
+                                    Expense ex = new Expense();
+                                    ex.exAmount = String.valueOf(summa);
+                                    ex.exName = "Жалпы";
+                                    collectionList.add(ex);
+                                }
+                                // update the adapater
+                                if (collectionList.size() > 0) {
+                                    CollectionListAdapter collListAdapter = new CollectionListAdapter(collectionList, CollectionAmounts.this);
+                                    collectionListView.setAdapter(collListAdapter);
+                                }
                             }
 
+                            ed_Remaining.setText(totalPodOtchet + totalCollection + "");
+                            dd_Amount.setText(totalPodOtchet + totalCollection + "");
+
+                        } catch (JSONException e) {
+                            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
+                                    getApplicationContext().getString(R.string.dialog_error_title),
+                                    getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                         }
+
                     }, new Response.ErrorListener() {
 
                 @Override
@@ -360,32 +426,28 @@ public class CollectionAmounts extends AppCompatActivity {
             }
 
             CustomJsonArrayRequest req = new CustomJsonArrayRequest(Request.Method.POST, AppConfig.URL_TRANSACTIONS_LIST, jsonObject,
-                    new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            hideDialog();
-                            try {
-                                if (response.length() > 0) {
-                                    long totalAmount = 0;
-                                    for (int i = 0; i < response.length(); i++) {
-                                        JSONObject c = response.getJSONObject(i);
-                                        totalAmount = totalAmount + Long.parseLong(c.getString("amount"));
-                                    }
-                                    totalPodOtchet = totalAmount;
-                                    ed_PaymentAmount.setText("" + totalAmount);
-
-                                } else {
-                                    totalPodOtchet = 0;
-                                    ed_PaymentAmount.setText("0");
+                    response -> {
+                        hideDialog();
+                        try {
+                            if (response.length() > 0) {
+                                long totalAmount = 0;
+                                for (int i = 0; i < response.length(); i++) {
+                                    JSONObject c = response.getJSONObject(i);
+                                    totalAmount = totalAmount + Long.parseLong(c.getString("amount"));
                                 }
-
-                                listCollections(ed_Date.getText().toString(), postman);
-
-                            } catch (JSONException | ParseException e) {
-                                MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
-                                        getApplicationContext().getString(R.string.dialog_error_title),
-                                        getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
+                                totalPodOtchet = totalAmount;
+                                ed_PaymentAmount.setText("" + totalAmount);
+                            } else {
+                                totalPodOtchet = 0;
+                                ed_PaymentAmount.setText("0");
                             }
+
+                            listCollections(ed_Date.getText().toString(), postman);
+
+                        } catch (JSONException | ParseException e) {
+                            MyDialog.createSimpleOkErrorDialog(CollectionAmounts.this,
+                                    getApplicationContext().getString(R.string.dialog_error_title),
+                                    getApplicationContext().getString(R.string.ErrorWhenLoading)).show();
                         }
                     }, new Response.ErrorListener() {
 
@@ -435,6 +497,7 @@ public class CollectionAmounts extends AppCompatActivity {
             else
                 dateS = dateS + "-" + day_x;
             ed_Date.setText(dateS);
+            dd_Date.setText(dateS);
         }
     };
 

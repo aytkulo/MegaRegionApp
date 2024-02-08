@@ -155,21 +155,18 @@ public class DeliveryEntry extends AppCompatActivity {
         }
 
 
-        btn_saveData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btn_saveData.setOnClickListener(v -> {
 
-                btn_saveData.setEnabled(false);
-                if (deliveryDataCheck()) {
-                    try {
-                        saveData();
-                    } catch (Exception e) {
-                        btn_saveData.setEnabled(true);
-                        e.printStackTrace();
-                    }
+            btn_saveData.setEnabled(false);
+            if (deliveryDataCheck()) {
+                try {
+                    saveData();
+                } catch (Exception e) {
+                    btn_saveData.setEnabled(true);
+                    e.printStackTrace();
                 }
-                btn_saveData.setEnabled(true);
             }
+            btn_saveData.setEnabled(true);
         });
 
 

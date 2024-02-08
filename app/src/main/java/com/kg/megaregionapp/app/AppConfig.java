@@ -5,7 +5,7 @@ package com.kg.megaregionapp.app;
  */
 public class AppConfig {
 
-   // public static String PURE_URL = "http://10.0.2.2:8080/";
+    // public static String PURE_URL = "http://10.0.2.2:8080/";
 
     public static String PURE_URL = "http://194.163.181.93:8080/mega-api/";
 
@@ -88,6 +88,8 @@ public class AppConfig {
     public static String URL_ORDER_UPDATE_ACCEPT = PURE_URL + "order/accept";
 
 
+    public static String URL_EXPENSE_LIST = PURE_URL + "expense/list";
+
     public static String URL_COLLECTION_LIST = PURE_URL + "reports/collections";
 
     public static String URL_GET_FIN_REPORT = PURE_URL + "reports/financial";
@@ -102,8 +104,6 @@ public class AppConfig {
     public static String URL_TRANSACTIONS_LIST = PURE_URL + "transactions/list";
 
     public static String URL_EXPENSE_SAVE = PURE_URL + "expense/save";
-
-    public static String URL_EXPENSE_LIST = PURE_URL + "expense/list";
 
     public static String URL_EXPENSE_UPDATE = PURE_URL + "expense/update";
 

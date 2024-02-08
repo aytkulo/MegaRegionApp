@@ -3,13 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_accountant.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/layout/activity_collection_amounts.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_delivery_deliver.xml" value="0.11796309273534221" />
         <entry key="app/src/main/res/layout/activity_delivery_entry.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/activity_record_expense.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_transaction.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/layout/activity_transaction_operation.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/record_expense_dialog.xml" value="0.3472222222222222" />
+        <entry key="app/src/main/res/layout/template_account_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/template_collection_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/template_delivery.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/layout/template_delivery_observe.xml" value="0.3229166666666667" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.24923076923076923" />
       </map>
     </option>
   </component>

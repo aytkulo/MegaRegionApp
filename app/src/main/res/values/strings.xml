@@ -138,6 +138,7 @@
     <string name="Expenses">РАСХОДЫ</string>
     <string name="Transactons">ПОДОТЧЁТ</string>
     <string name="Collections">ОТЧЁТ КУРЬЕРА</string>
+    <string name="AccountingReport">ОТЧЁТ БУХГАЛТЕР</string>
     <string name="PostmanNew">НОВЫЙ КУРЬЕР</string>
     <string name="PostmanDelete">УДАЛЕНИЕ КУРЬЕРА</string>
     <string name="PostmanUpdatePermission">РАЗРЕШЕНИЕ</string>
@@ -188,7 +189,6 @@
     <string name="FillTheReceiverData">Вы должны указать имя получателя!</string>
 
 
-
     <string-array name="roles">
         <item>ADMIN</item>
         <item>POSTMAN</item>
@@ -228,7 +228,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_show_location">Map</string>
-    <string name="DeliveryAssign"/>
+    <string name="DeliveryAssign" />
 
     <string name="OK">OK</string>
 

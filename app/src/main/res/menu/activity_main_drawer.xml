@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
+<!--
     <group android:checkableBehavior="single" android:id="@+id/preOrder">
 
         <item
@@ -19,7 +19,7 @@
             android:icon="@drawable/ic_delivlist"
             android:title="@string/AssignedOrders"/>
     </group>
-
+-->
     <group android:checkableBehavior="single" android:id="@+id/Order">
 
         <item
@@ -98,6 +98,12 @@
             android:id="@+id/nav_collections"
             android:icon="@drawable/icon_expense"
             android:title="@string/Collections"/>
+
+        <item
+            android:id="@+id/nav_account_report"
+            android:icon="@drawable/ic_course"
+            android:title="@string/AccountingReport"/>
+
 
 
     </group>
