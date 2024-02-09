@@ -15,6 +15,8 @@ public class Account implements Serializable {
 
     public long expense;
 
+    public long fuel;
+
     public String postman;
 
     public String enteredUser;

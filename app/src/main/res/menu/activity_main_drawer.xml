@@ -64,30 +64,6 @@
     </group>
 
     <group android:checkableBehavior="single" android:id="@+id/finance">
-<!--
-        <item
-            android:id="@+id/nav_finance"
-            android:icon="@drawable/ic_preorder"
-            android:title="@string/Reports"/>
-
-        <item
-            android:id="@+id/nav_expense_op"
-            android:icon="@drawable/icon_expense"
-            android:title="@string/Expenses"/>
--->
-
-        <item
-            android:id="@+id/nav_postman_new"
-            android:icon="@drawable/ic_postman"
-            android:title="@string/PostmanNew"/>
-        <item
-            android:id="@+id/nav_delete_user"
-            android:icon="@drawable/ic_menu_delete"
-            android:title="@string/PostmanDelete"/>
-        <item
-            android:id="@+id/nav_postman_positions"
-            android:icon="@drawable/ic_delupdate"
-            android:title="@string/PostmanUpdatePermission"/>
 
         <item
             android:id="@+id/nav_transactions"
@@ -103,6 +79,24 @@
             android:id="@+id/nav_account_report"
             android:icon="@drawable/ic_course"
             android:title="@string/AccountingReport"/>
+
+    </group>
+
+
+    <group android:checkableBehavior="single" android:id="@+id/postman">
+
+        <item
+            android:id="@+id/nav_postman_new"
+            android:icon="@drawable/ic_postman"
+            android:title="@string/PostmanNew"/>
+        <item
+            android:id="@+id/nav_delete_user"
+            android:icon="@drawable/ic_menu_delete"
+            android:title="@string/PostmanDelete"/>
+        <item
+            android:id="@+id/nav_postman_positions"
+            android:icon="@drawable/ic_delupdate"
+            android:title="@string/PostmanUpdatePermission"/>
 
 
 

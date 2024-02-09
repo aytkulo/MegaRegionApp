@@ -49,10 +49,12 @@ class AccountListAdapter extends BaseAdapter {
             //LayoutInflater layoutInfiater = LayoutInflater.from(context);
             convertView = layoutInfiater.inflate(R.layout.template_account_list, null);
 
-            viewItem.txtAmount = (TextView) convertView.findViewById(R.id.txt_ex_amount);
-            viewItem.txtName = (TextView) convertView.findViewById(R.id.txt_ex_user);
-            viewItem.txtDate = (TextView) convertView.findViewById(R.id.txt_ex_date);
-            viewItem.txtExplanation = (TextView) convertView.findViewById(R.id.txt_ex_expense);
+            viewItem.txtAmount = convertView.findViewById(R.id.txt_ex_amount);
+            viewItem.txtName = convertView.findViewById(R.id.txt_ex_user);
+       //     viewItem.txtDate = convertView.findViewById(R.id.txt_ex_date);
+            viewItem.txtExplanation = convertView.findViewById(R.id.txt_ex_expense);
+            viewItem.txtCity = convertView.findViewById(R.id.txt_ex_fuel);
+
 
             convertView.setTag(viewItem);
         } else {
@@ -62,7 +64,8 @@ class AccountListAdapter extends BaseAdapter {
         viewItem.txtName.setText(valueList.get(position).postman);
         viewItem.txtAmount.setText(String.valueOf(valueList.get(position).amount));
         viewItem.txtExplanation.setText(String.valueOf(valueList.get(position).expense));
-        viewItem.txtDate.setText(valueList.get(position).expenseDate);
+   //     viewItem.txtDate.setText(valueList.get(position).expenseDate);
+        viewItem.txtCity.setText(String.valueOf(valueList.get(position).fuel));
 
         return convertView;
     }

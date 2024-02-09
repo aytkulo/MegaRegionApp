@@ -36,14 +36,14 @@ import java.util.Map;
 public class AccountantActivity extends AppCompatActivity {
 
     public static int DIALOG_ID = 0;
-    private EditText ed_Date, ed_PaymentAmount, ed_ExpenseAmount;
+    private EditText ed_Date, ed_PaymentAmount, ed_ExpenseAmount, ed_Total, ed_Fuel;
     private ListView collectionListView;
     private int year_x, month_x, day_x;
     private Calendar calendar;
     private ProgressDialog pDialog;
     private List<Account> collectionList = new ArrayList<>();
 
-    public long totalAmount, totalExpense;
+    public long totalAmount, totalExpense, totalFuel, totalPayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,8 @@ public class AccountantActivity extends AppCompatActivity {
         ed_Date =  findViewById(R.id.ed_Date_Collection);
         ed_PaymentAmount = findViewById(R.id.ed_payment);
         ed_ExpenseAmount = findViewById(R.id.ed_expense);
+        ed_Fuel =  findViewById(R.id.ed_fuel);
+        ed_Total =  findViewById(R.id.ed_Total);
         collectionListView =  findViewById(R.id.listViewCollections);
 
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
@@ -101,8 +103,10 @@ public class AccountantActivity extends AppCompatActivity {
             CustomJsonArrayRequest req = new CustomJsonArrayRequest(Request.Method.POST, AppConfig.URL_EXPENSE_LIST, jsonObject,
                     response -> {
                         hideDialog();
-                            totalAmount = 0;
-                            totalExpense = 0;
+                        totalAmount = 0;
+                        totalExpense = 0;
+                        totalFuel = 0;
+                        totalPayment = 0;
                         try {
                             if (response.length() > 0) {
 
@@ -111,16 +115,20 @@ public class AccountantActivity extends AppCompatActivity {
                                     Account ex = new Account();
                                     ex.expense = Long.valueOf(c.getString("expense"));
                                     ex.amount = Long.valueOf(c.getString("amount"));
+                                    ex.fuel = Long.valueOf(c.getString("fuel"));
                                     ex.postman = c.getString("postman");
                                     ex.expenseDate = c.getString("expenseDate");
                                     ex.expenseId = c.getString("expenseId");
                                     collectionList.add(ex);
-                                    totalAmount+=ex.amount;
-                                    totalExpense+=ex.expense;
+                                    totalPayment += ex.amount;
+                                    totalExpense += ex.expense;
+                                    totalFuel += ex.fuel;
                                 }
-
-                                ed_ExpenseAmount.setText(totalExpense+"");
-                                ed_PaymentAmount.setText(totalAmount+"");
+                                totalAmount = totalPayment - totalExpense - totalFuel;
+                                ed_ExpenseAmount.setText(totalExpense + "");
+                                ed_PaymentAmount.setText(totalPayment + "");
+                                ed_Fuel.setText(totalFuel + "");
+                                ed_Total.setText(totalAmount + "");
                                 if (collectionList.size() > 0) {
                                     AccountListAdapter collListAdapter = new AccountListAdapter(collectionList, AccountantActivity.this);
                                     collectionListView.setAdapter(collListAdapter);

@@ -51,7 +51,7 @@ public class CollectionAmounts extends AppCompatActivity {
     private static final String TAG = CollectionAmounts.class.getSimpleName();
     public static int DIALOG_ID = 0;
     private EditText ed_Date, ed_PaymentAmount, ed_Remaining;
-    private EditText dd_Date, dd_Postman, dd_Amount, dd_Expense;
+    private EditText dd_Date, dd_Postman, dd_Amount, dd_Expense, dd_Fuel;
     Spinner spinner_users;
     private ListView collectionListView;
     private int year_x, month_x, day_x;
@@ -127,11 +127,15 @@ public class CollectionAmounts extends AppCompatActivity {
         dd_Expense = vDialog.findViewById(R.id.dd_expense);
         dd_cancel = vDialog.findViewById(R.id.dd_btn_cancel);
         dd_save = vDialog.findViewById(R.id.dd_btn_save_data);
+        dd_Fuel = vDialog.findViewById(R.id.dd_fuel);
         dd_Date.setText(strDate);
         dd_Expense.setText("0");
+        dd_Fuel.setText("0");
 
         btn_open_dialog.setOnClickListener(v -> {
             Window window = dialog.getWindow();
+            dd_Expense.setText("0");
+            dd_Fuel.setText("0");
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             dialog.show();
         });
@@ -195,6 +199,7 @@ public class CollectionAmounts extends AppCompatActivity {
                 jsonObject.put("enteredUser", HomeActivity.userLogin);
                 jsonObject.put("postman", dd_Postman.getText());
                 jsonObject.put("expense", dd_Expense.getText());
+                jsonObject.put("fuel", dd_Fuel.getText());
                 jsonObject.put("expenseDate", dd_Date.getText());
             } catch (JSONException e) {
                 e.printStackTrace();
