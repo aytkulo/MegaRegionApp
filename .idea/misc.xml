@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/activity_delivery_deliver.xml" value="0.11796309273534221" />
         <entry key="app/src/main/res/layout/activity_delivery_entry.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/activity_postman_check.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_record_expense.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_transaction.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/layout/activity_transaction_operation.xml" value="0.18385416666666668" />

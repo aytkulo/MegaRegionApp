@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.kg.megaregionapp" >
+    package="com.kg.megaregionapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,13 +20,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        android:windowIsFloating="true" >
+        android:windowIsFloating="true">
+        <activity
+            android:name="com.kg.megaregionapp.expense.PostmanCheckActivity"
+            android:parentActivityName="com.kg.megaregionapp.HomeActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:exported="false" />
         <activity
             android:name="com.kg.megaregionapp.expense.AccountantActivity"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"  />
-
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.kg.megaregionapp.delivery.DeliveryDebteds"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
@@ -37,7 +42,7 @@
             android:exported="true"
             android:label="@string/title_activity_home"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,13 +61,13 @@
             android:name="com.kg.megaregionapp.customer.CorporateSelectionList"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name="com.kg.megaregionapp.expense.TransactionOperation" />
+        <activity android:name=".TransactionOperation" />
         <activity
-            android:name="com.kg.megaregionapp.expense.Transaction"
+            android:name=".Transaction"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.kg.megaregionapp.expense.ExpenseList"
+            android:name=".ExpenseList"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -140,7 +145,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.kg.megaregionapp.expense.ExpenseOperation"
+            android:name=".ExpenseOperation"
             android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
             android:screenOrientation="portrait"
@@ -154,7 +159,7 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name="com.kg.megaregionapp.expense.FinancialReport"
+            android:name=".FinancialReport"
             android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity"
             android:screenOrientation="portrait"
@@ -172,7 +177,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.kg.megaregionapp.expense.CollectionAmounts"
+            android:name=".CollectionAmounts"
             android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.kg.megaregionapp.HomeActivity" />
         <activity
@@ -192,7 +197,7 @@
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true"
-            tools:replace="android:authorities" >
+            tools:replace="android:authorities">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"

@@ -80,6 +80,11 @@
             android:icon="@drawable/ic_course"
             android:title="@string/AccountingReport"/>
 
+        <item
+            android:id="@+id/nav_postman_report"
+            android:icon="@drawable/ic_mytests"
+            android:title="@string/PostmantListRep"/>
+
     </group>
 
 

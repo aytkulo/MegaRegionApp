@@ -25,6 +25,7 @@ import com.kg.megaregionapp.delivery.DeliveryOpenList;
 import com.kg.megaregionapp.delivery.DeliveryWho;
 import com.kg.megaregionapp.expense.AccountantActivity;
 import com.kg.megaregionapp.expense.CollectionAmounts;
+import com.kg.megaregionapp.expense.PostmanCheckActivity;
 import com.kg.megaregionapp.expense.Transaction;
 import com.kg.megaregionapp.helper.HelperConstants;
 import com.kg.megaregionapp.helper.SessionManager;
@@ -298,6 +299,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, AccountantActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.nav_postman_report) {
+            Intent intent = new Intent(this, PostmanCheckActivity.class);
+            startActivity(intent);
+        }
+
 
 
 

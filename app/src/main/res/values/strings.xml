@@ -139,6 +139,7 @@
     <string name="Transactons">ПОДОТЧЁТ</string>
     <string name="Collections">ОТЧЁТ КУРЬЕРА</string>
     <string name="AccountingReport">ОТЧЁТ БУХГАЛТЕР</string>
+    <string name="PostmantListRep">КУРЬЕРЫ ОТЧИТ.</string>
     <string name="PostmanNew">НОВЫЙ КУРЬЕР</string>
     <string name="PostmanDelete">УДАЛЕНИЕ КУРЬЕРА</string>
     <string name="PostmanUpdatePermission">РАЗРЕШЕНИЕ</string>
