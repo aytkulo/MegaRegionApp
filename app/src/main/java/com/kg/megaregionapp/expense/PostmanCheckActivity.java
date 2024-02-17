@@ -136,7 +136,7 @@ public class PostmanCheckActivity extends AppCompatActivity {
 
                 @Override
                 public Map<String, String> getHeaders() {
-                    HashMap<String, String> headers = new HashMap<String, String>();
+                    HashMap<String, String> headers = new HashMap<>();
                     headers.put("Authorization", HomeActivity.token);
                     return headers;
                 }
